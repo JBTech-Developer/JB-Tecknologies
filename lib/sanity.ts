@@ -97,7 +97,7 @@ export async function fetchCitiesFromSanity(): Promise<City[] | null> {
       zipCodes
     } | order(population desc)`;
 
-    const cities = await client.fetch<City[]>(query);
+    const cities = await client.fetch(query) as City[] | null;
 
     if (!cities || cities.length === 0) {
       console.warn('No cities found in Sanity CMS');
@@ -150,10 +150,10 @@ export async function fetchCityFromSanity(
       zipCodes
     }`;
 
-    const city = await client.fetch<City | null>(query, {
+    const city = (await client.fetch(query, {
       cityName,
       stateSlug: stateSlug.toLowerCase(),
-    });
+    })) as City | null;
 
     return city;
   } catch (error) {

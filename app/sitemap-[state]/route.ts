@@ -8,13 +8,14 @@ import { generateSitemapIndex, sitemapToXML } from '@/lib/sitemap-splitter';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { state: string } }
+  { params }: { params: Promise<{ state: string }> | { state: string } }
 ) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jbtech.com';
   const { stateSitemaps } = generateSitemapIndex(baseUrl);
   
-  // Extract state slug from route parameter
-  const stateSlug = params.state || '';
+  // Extract state slug from route parameter (handle Promise during static generation)
+  const resolvedParams = await Promise.resolve(params);
+  const stateSlug = resolvedParams?.state || '';
   const stateSitemap = stateSitemaps.get(stateSlug);
 
   if (!stateSitemap) {

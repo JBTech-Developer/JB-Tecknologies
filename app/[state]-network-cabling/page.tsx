@@ -16,10 +16,12 @@ export async function generateStaticParams() {
 export default async function StatePage({
   params,
 }: {
-  params: { state: string };
+  params: Promise<{ state: string }> | { state: string };
 }) {
   // Extract state slug by removing '-network-cabling' suffix
-  const stateSlug = params.state.replace('-network-cabling', '');
+  // Handle Promise during static generation
+  const resolvedParams = await Promise.resolve(params);
+  const stateSlug = resolvedParams?.state?.replace('-network-cabling', '') || '';
   const stateData = getStateBySlug(stateSlug);
   
   if (!stateData) {

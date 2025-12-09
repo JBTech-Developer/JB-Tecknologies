@@ -10,14 +10,15 @@ import { generateSitemapIndex, sitemapToXML } from '@/lib/sitemap-splitter';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { stateSlug: string } }
+  { params }: { params: Promise<{ stateSlug: string }> | { stateSlug: string } }
 ) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jbtech.com';
   const { stateSitemaps } = generateSitemapIndex(baseUrl);
   
-  // Extract state slug from route parameter
+  // Extract state slug from route parameter (handle Promise during static generation)
   // The route is /sitemap-[stateSlug].xml, so params.stateSlug contains the state slug
-  const stateSlug = params.stateSlug || '';
+  const resolvedParams = await Promise.resolve(params);
+  const stateSlug = resolvedParams?.stateSlug || '';
   const stateSitemap = stateSitemaps.get(stateSlug);
 
   if (!stateSitemap) {

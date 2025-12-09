@@ -69,7 +69,7 @@ async function loadCities(): Promise<City[]> {
         const sanityCities = await sanity.fetchCitiesFromSanity();
         if (sanityCities && sanityCities.length > 0) {
           cachedCities = sanityCities;
-          return cachedCities;
+          return sanityCities;
         }
       }
     } catch (error) {
