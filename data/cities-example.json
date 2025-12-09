@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Atlanta",
+    "state": "Georgia",
+    "stateAbbr": "GA",
+    "latitude": 33.749,
+    "longitude": -84.388,
+    "population": 498715,
+    "areaCode": "404",
+    "majorLandmark": "Ponce City Market",
+    "neighboringTowns": ["Sandy Springs", "Roswell", "Alpharetta", "Decatur", "Marietta"],
+    "zipCodes": ["30301", "30302", "30303", "30304", "30305"]
+  },
+  {
+    "name": "Savannah",
+    "state": "Georgia",
+    "stateAbbr": "GA",
+    "latitude": 32.0809,
+    "longitude": -81.0912,
+    "population": 147780,
+    "areaCode": "912",
+    "majorLandmark": "Port of Savannah",
+    "neighboringTowns": ["Pooler", "Garden City", "Port Wentworth", "Tybee Island"],
+    "zipCodes": ["31401", "31402", "31403", "31404", "31405"]
+  }
+]
+
