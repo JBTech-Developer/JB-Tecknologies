@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllCitiesSync, getAllStates } from '@/lib/cities';
+import { getAllServicesSync } from '@/lib/services';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jbtech.com';
@@ -13,28 +14,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Add state hub pages (using correct format: /georgia-network-cabling)
+  // Add state hub pages (using correct format: /georgia/network-cabling)
   const states = getAllStates();
   states.forEach((state) => {
     const stateSlug = state.name.toLowerCase().replace(/\s+/g, '-');
     routes.push({
-      url: `${baseUrl}/${stateSlug}-network-cabling`,
+      url: `${baseUrl}/${stateSlug}/network-cabling`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     });
   });
 
-  // Add city pages
+  // Add service-city pages (double loop: every city × every service)
   const cities = getAllCitiesSync();
+  const services = getAllServicesSync();
+  
   cities.forEach((city) => {
     const stateSlug = city.state.toLowerCase().replace(/\s+/g, '-');
     const citySlug = city.name.toLowerCase().replace(/\s+/g, '-');
-    routes.push({
-      url: `${baseUrl}/${stateSlug}/${citySlug}-network-cabling`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
+    
+    services.forEach((service) => {
+      routes.push({
+        url: `${baseUrl}/${stateSlug}/${citySlug}/${service.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      });
     });
   });
 

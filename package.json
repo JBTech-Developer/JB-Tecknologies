@@ -10,6 +10,7 @@
     "generate": "tsx scripts/generate-pages.ts",
     "import-cities": "tsx scripts/import-cities.ts",
     "generate-city-data": "tsx scripts/generate-city-data.ts",
+    "generate-5000-cities": "tsx scripts/generate-5000-cities.ts",
     "verify-build": "tsx scripts/verify-build.ts"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "openai": "^4.47.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
+    "react-icons": "^5.5.0",
     "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {

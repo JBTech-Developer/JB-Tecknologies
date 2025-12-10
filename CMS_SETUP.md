@@ -103,12 +103,18 @@ interface City {
   latitude: number;                 // Required: Latitude (-90 to 90)
   longitude: number;                // Required: Longitude (-180 to 180)
   population: number;               // Required: Population count
+  county: string;                   // Required: County name (for dynamic content)
+  zipCodes: string[];              // Required: Array with at least one zip code
   areaCode?: string;                // Optional: Primary area code
   majorLandmark?: string;           // Optional: Famous landmark
   neighboringTowns?: string[];     // Optional: Nearby cities
-  zipCodes?: string[];             // Optional: Primary zip codes
 }
 ```
+
+**Critical Requirements:**
+- `county` is **REQUIRED** - Used in intro text template: "surrounding {County} region"
+- `zipCodes` is **REQUIRED** - Must be an array with at least one zip code
+- These fields ensure unique content on every page (prevents Google penalties)
 
 ## WordPress/WPGraphQL Alternative
 

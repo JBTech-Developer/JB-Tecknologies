@@ -1,0 +1,219 @@
+[
+  {
+    "category": "Structured Cabling",
+    "service_name": "Voice & Data Cabling (Cat6/Cat6A)",
+    "slug": "voice-data-cabling-installers",
+    "meta_desc_template": "Certified Cat5e, Cat6, and Cat6A structured cabling installers in {City}. We provide low-voltage wiring for offices, warehouses, and new construction.",
+    "hero_overlay_text": "Data Cabling: {City}"
+  },
+  {
+    "category": "Structured Cabling",
+    "service_name": "Fiber Optic Cabling (Single/Multi-Mode)",
+    "slug": "fiber-optic-cabling-installation",
+    "meta_desc_template": "Fiber optic backbone cabling in {City}. We install OS2 Single-mode and OM3/OM4 Multi-mode fiber for campus networks and server rooms.",
+    "hero_overlay_text": "Fiber Optics: {City}"
+  },
+  {
+    "category": "Structured Cabling",
+    "service_name": "Outside Plant (OSP) Cabling",
+    "slug": "outside-plant-cabling",
+    "meta_desc_template": "Underground and aerial OSP cabling services in {City}. We trench and run conduit to connect multiple buildings on your campus.",
+    "hero_overlay_text": "OSP Cabling: {City}"
+  },
+  {
+    "category": "Structured Cabling",
+    "service_name": "Conduit & Pathway Installation",
+    "slug": "conduit-pathway-installation",
+    "meta_desc_template": "EMT conduit, J-hook, and cable tray installation in {City}. We build the physical pathway infrastructure for your low-voltage systems.",
+    "hero_overlay_text": "Conduit Install: {City}"
+  },
+  {
+    "category": "Structured Cabling",
+    "service_name": "Demarc Extension Services",
+    "slug": "demarc-extension-wiring",
+    "meta_desc_template": "Extend your ISP circuit (T1, Fiber, Coax) from the MPOE to your suite. Professional demarc extensions for {City} commercial buildings.",
+    "hero_overlay_text": "Circuit Extensions: {City}"
+  },
+  {
+    "category": "Structured Cabling",
+    "service_name": "Rack Cleanup & Management",
+    "slug": "server-rack-cleanup",
+    "meta_desc_template": "Messy server room in {City}? We specialize in MDF/IDF organization, cable dressing, and identifying dead ports.",
+    "hero_overlay_text": "Rack Cleanup: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Video Conferencing Rooms",
+    "slug": "video-conferencing-installation",
+    "meta_desc_template": "Zoom Room and Microsoft Teams Room installation in {City}. We setup video bars, ceiling mics, and control panels for hybrid meetings.",
+    "hero_overlay_text": "Conf Rooms: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Commercial Audio Systems",
+    "slug": "commercial-audio-installation",
+    "meta_desc_template": "70V distributed audio and background music systems for {City} retail stores, restaurants, and offices.",
+    "hero_overlay_text": "Commercial Audio: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Digital Signage & Video Walls",
+    "slug": "digital-signage-installation",
+    "meta_desc_template": "Digital menu boards, wayfinding kiosks, and LED video wall installation for {City} businesses and lobbies.",
+    "hero_overlay_text": "Digital Signage: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Sound Masking Solutions",
+    "slug": "sound-masking-installation",
+    "meta_desc_template": "Reduce noise distractions in {City} offices with white/pink noise sound masking emitters. Improve speech privacy today.",
+    "hero_overlay_text": "Sound Masking: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Public Address (PA) Systems",
+    "slug": "public-address-system-installers",
+    "meta_desc_template": "Overhead paging and zone PA systems for {City} warehouses, manufacturing plants, and schools.",
+    "hero_overlay_text": "PA Systems: {City}"
+  },
+  {
+    "category": "Physical Security",
+    "service_name": "Commercial CCTV Surveillance",
+    "slug": "commercial-cctv-installation",
+    "meta_desc_template": "IP camera systems and NVR installation for {City} businesses. Remote viewing and cloud-storage security solutions.",
+    "hero_overlay_text": "CCTV Security: {City}"
+  },
+  {
+    "category": "Physical Security",
+    "service_name": "Door Access Control",
+    "slug": "access-control-systems",
+    "meta_desc_template": "Keycard, fob, and mobile credential access control installers in {City}. Secure your doors with cloud-managed hardware.",
+    "hero_overlay_text": "Access Control: {City}"
+  },
+  {
+    "category": "Physical Security",
+    "service_name": "Video Intercom Systems",
+    "slug": "video-intercom-installation",
+    "meta_desc_template": "Cloud-based video intercoms for {City} multi-family and commercial entrances. See visitors from your smartphone.",
+    "hero_overlay_text": "Video Intercom: {City}"
+  },
+  {
+    "category": "Physical Security",
+    "service_name": "Intrusion Detection Alarms",
+    "slug": "commercial-intrusion-detection",
+    "meta_desc_template": "Commercial burglar alarms, glass break sensors, and motion detection systems for {City} facilities.",
+    "hero_overlay_text": "Intrusion Alarms: {City}"
+  },
+  {
+    "category": "Physical Security",
+    "service_name": "Perimeter Security & Gates",
+    "slug": "perimeter-security-gates",
+    "meta_desc_template": "Automated gate barriers, turnstiles, and perimeter fencing technology for {City} industrial sites.",
+    "hero_overlay_text": "Security Gates: {City}"
+  },
+  {
+    "category": "Life Safety",
+    "service_name": "Commercial Fire Alarm Systems",
+    "slug": "fire-alarm-system-installers",
+    "meta_desc_template": "NICET-certified fire alarm design, installation, and monitoring for {City} commercial buildings.",
+    "hero_overlay_text": "Fire Alarms: {City}"
+  },
+  {
+    "category": "Life Safety",
+    "service_name": "Public Safety DAS (ERCES)",
+    "slug": "public-safety-das-erces",
+    "meta_desc_template": "Emergency Radio Communication Enhancement Systems (ERCES) in {City}. We ensure First Responder radio signal compliance.",
+    "hero_overlay_text": "Public Safety DAS: {City}"
+  },
+  {
+    "category": "Life Safety",
+    "service_name": "Nurse Call Systems",
+    "slug": "nurse-call-system-installation",
+    "meta_desc_template": "Patient alerting and nurse call system installation for {City} healthcare facilities and assisted living homes.",
+    "hero_overlay_text": "Nurse Call: {City}"
+  },
+  {
+    "category": "Life Safety",
+    "service_name": "Area of Refuge Systems",
+    "slug": "area-of-refuge-systems",
+    "meta_desc_template": "Two-way communication systems for Area of Refuge stairwells in {City} multi-story buildings.",
+    "hero_overlay_text": "Area of Refuge: {City}"
+  },
+  {
+    "category": "Wireless",
+    "service_name": "Commercial WiFi Installation",
+    "slug": "commercial-wifi-installation",
+    "meta_desc_template": "Enterprise WiFi design and Wireless Access Point (WAP) installation for {City} offices and warehouses.",
+    "hero_overlay_text": "Commercial WiFi: {City}"
+  },
+  {
+    "category": "Wireless",
+    "service_name": "Cellular DAS (Signal Boosting)",
+    "slug": "cellular-das-installation",
+    "meta_desc_template": "Boost Verizon, AT&T, and T-Mobile signals in your {City} building with a Distributed Antenna System (DAS).",
+    "hero_overlay_text": "Cellular DAS: {City}"
+  },
+  {
+    "category": "Wireless",
+    "service_name": "Point-to-Point Wireless",
+    "slug": "point-to-point-wireless-bridge",
+    "meta_desc_template": "Connect multiple buildings in {City} without trenching fiber using high-speed Point-to-Point wireless bridges.",
+    "hero_overlay_text": "Wireless Bridge: {City}"
+  },
+  {
+    "category": "Smart Building",
+    "service_name": "Building Management Systems (BMS)",
+    "slug": "building-management-systems",
+    "meta_desc_template": "Integrated BMS automation for {City} facilities. Control HVAC, lighting, and access from a single dashboard.",
+    "hero_overlay_text": "BMS Integration: {City}"
+  },
+  {
+    "category": "Smart Building",
+    "service_name": "PoE Lighting Systems",
+    "slug": "poe-lighting-installation",
+    "meta_desc_template": "Low-voltage Power over Ethernet (PoE) lighting solutions for {City} smart offices. Energy efficient and programmable.",
+    "hero_overlay_text": "PoE Lighting: {City}"
+  },
+  {
+    "category": "Smart Building",
+    "service_name": "Smart Glass Installation",
+    "slug": "smart-glass-installation",
+    "meta_desc_template": "Switchable privacy glass installation and low-voltage integration for {City} conference rooms and executive offices.",
+    "hero_overlay_text": "Smart Glass: {City}"
+  },
+  {
+    "category": "Parking Tech",
+    "service_name": "Commercial EV Charging",
+    "slug": "commercial-ev-charging-stations",
+    "meta_desc_template": "Turnkey Level 2 and Level 3 EV charging station installation for {City} parking lots and fleets.",
+    "hero_overlay_text": "EV Charging: {City}"
+  },
+  {
+    "category": "Parking Tech",
+    "service_name": "Parking Revenue & Guidance",
+    "slug": "parking-revenue-guidance-systems",
+    "meta_desc_template": "Automated ticket terminals, pay stations, and space guidance lights for {City} parking garages.",
+    "hero_overlay_text": "Parking Tech: {City}"
+  },
+  {
+    "category": "Parking Tech",
+    "service_name": "License Plate Recognition (LPR)",
+    "slug": "license-plate-recognition-lpr",
+    "meta_desc_template": "LPR camera systems for gated entry and inventory tracking in {City} logistics centers and parking decks.",
+    "hero_overlay_text": "LPR Systems: {City}"
+  },
+  {
+    "category": "IT Services",
+    "service_name": "Network Equipment Rack & Stack",
+    "slug": "network-rack-stack-services",
+    "meta_desc_template": "Physical installation of switches, routers, UPS units, and firewalls for {City} IT deployments.",
+    "hero_overlay_text": "Rack & Stack: {City}"
+  },
+  {
+    "category": "IT Services",
+    "service_name": "POS & Retail Rollouts",
+    "slug": "retail-pos-rollouts",
+    "meta_desc_template": "National rollout services for {City} retail locations. We install POS registers, scan guns, and back-office IT gear.",
+    "hero_overlay_text": "Retail POS: {City}"
+  }
+]

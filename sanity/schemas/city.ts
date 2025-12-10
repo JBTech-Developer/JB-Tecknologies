@@ -50,6 +50,13 @@ export default {
       validation: (Rule: any) => Rule.required().min(0),
     },
     {
+      name: 'county',
+      title: 'County',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+      description: 'County name (required for dynamic content generation)',
+    },
+    {
       name: 'areaCode',
       title: 'Area Code',
       type: 'string',
@@ -73,7 +80,8 @@ export default {
       title: 'Zip Codes',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Primary zip codes served',
+      validation: (Rule: any) => Rule.required().min(1),
+      description: 'Primary zip codes served (at least one required)',
     },
   ],
   preview: {

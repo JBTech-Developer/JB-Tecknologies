@@ -13,7 +13,7 @@ export default function Header() {
             <Link href="/" className="text-sm font-medium hover:text-primary">
               Home
             </Link>
-            <Link href="/georgia-network-cabling" className="text-sm font-medium hover:text-primary">
+            <Link href="/georgia/network-cabling" className="text-sm font-medium hover:text-primary">
               Services
             </Link>
           </nav>

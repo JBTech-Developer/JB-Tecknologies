@@ -14,14 +14,18 @@ export function loadCitiesFromJSON(filePath: string): City[] {
     const fileContents = fs.readFileSync(fullPath, 'utf-8');
     const cities: City[] = JSON.parse(fileContents);
     
-    // Validate city structure
+    // Validate city structure (including required county and zipCodes)
     return cities.filter(city => 
       city.name && 
       city.state && 
       city.stateAbbr && 
       typeof city.latitude === 'number' && 
       typeof city.longitude === 'number' &&
-      typeof city.population === 'number'
+      typeof city.population === 'number' &&
+      city.county && // County is required
+      city.zipCodes && // zipCodes array is required
+      Array.isArray(city.zipCodes) &&
+      city.zipCodes.length > 0 // At least one zip code required
     );
   } catch (error) {
     console.error('Error loading cities from JSON:', error);
@@ -39,11 +43,14 @@ export function loadCitiesFromJSON(filePath: string): City[] {
  *     "latitude": 33.749,
  *     "longitude": -84.388,
  *     "population": 498715,
+ *     "county": "Fulton",
  *     "areaCode": "404",
  *     "majorLandmark": "Ponce City Market",
  *     "neighboringTowns": ["Sandy Springs", "Roswell", "Alpharetta"],
  *     "zipCodes": ["30301", "30302", "30303"]
  *   }
  * ]
+ * 
+ * Required fields: name, state, stateAbbr, latitude, longitude, population, county, zipCodes (array with at least one zip code)
  */
 

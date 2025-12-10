@@ -183,12 +183,22 @@ function generateCity(state: { name: string; abbr: string }, index: number): Cit
     neighboringTowns.push(`Neighbor ${i + 1}`);
   }
   
-  // Generate zip codes
+  // Generate zip codes (realistic format)
   const zipCodes: string[] = [];
   const baseZip = Math.floor(10000 + Math.random() * 90000);
-  for (let i = 0; i < 3; i++) {
-    zipCodes.push(String(baseZip + i));
+  const numZipCodes = 1 + Math.floor(Math.random() * 4); // 1-5 zip codes
+  for (let i = 0; i < numZipCodes; i++) {
+    zipCodes.push(String(baseZip + i).padStart(5, '0'));
   }
+
+  // Generate county name (required field)
+  // Use common county patterns based on state
+  const countyPatterns = [
+    `${name} County`,
+    `${state.name.substring(0, 5)} County`,
+    `County ${index + 1}`,
+  ];
+  const county = countyPatterns[Math.floor(Math.random() * countyPatterns.length)];
 
   return {
     name,
@@ -197,10 +207,11 @@ function generateCity(state: { name: string; abbr: string }, index: number): Cit
     latitude,
     longitude,
     population,
+    county, // REQUIRED: County name
     areaCode,
     majorLandmark: landmark,
     neighboringTowns,
-    zipCodes,
+    zipCodes, // REQUIRED: Array with at least one zip code
   };
 }
 
