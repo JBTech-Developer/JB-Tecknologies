@@ -48,7 +48,7 @@ function generateCityPopulationMap(): Map<string, number> {
   const map = new Map<string, number>();
   
   // Top 100 US cities by population (2024 Census estimates)
-  const topCities = [
+  const topCities: [string, string, number][] = [
     ['New York', 'NY', 8478072],
     ['Los Angeles', 'CA', 3878704],
     ['Chicago', 'IL', 2721308],
@@ -158,7 +158,7 @@ function generateCityPopulationMap(): Map<string, number> {
   ];
   
   topCities.forEach(([name, state, pop]) => {
-    const key = `${name.toLowerCase()},${state}`;
+    const key = `${String(name).toLowerCase()},${String(state)}`;
     map.set(key, pop as number);
   });
   

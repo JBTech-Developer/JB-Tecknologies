@@ -142,10 +142,6 @@ const REAL_CITY_DATA: Record<string, number> = {
   'mcdonough,ga': 28580,
   'griffin,ga': 23457,
   'south fulton,ga': 107420,
-  'new york,ny': 8478072,
-  'buffalo,ny': 278349,
-  'rochester,ny': 211328,
-  'yonkers,ny': 211569,
   'syracuse,ny': 148620,
   'albany,ny': 99179,
   'new rochelle,ny': 79957,
@@ -189,9 +185,7 @@ const REAL_CITY_DATA: Record<string, number> = {
   'oneida,ny': 11190,
   'salamanca,ny': 5701,
   'saratoga springs,ny': 28391,
-  'schenectady,ny': 67047,
   'watervliet,ny': 10254,
-  'yonkers,ny': 211569,
   // Add more cities as needed - this is a sample of major cities
   // For comprehensive coverage, you would need 5,000+ entries
 };
