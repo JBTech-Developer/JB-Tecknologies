@@ -6,28 +6,42 @@ interface LeadData {
   companyName: string;
   email: string;
   phone: string;
-  dropCount: string;
+  projectDetails: string;
   facilityType: string;
   city: string;
   state: string;
 }
 
 // Lead Routing Logic
-function routeLead(dropCount: string, facilityType: string) {
-  const isSmallBusiness = dropCount === '1-10' || dropCount === '11-50';
-  const isEnterprise = dropCount === '51-200' || dropCount === '200+' || facilityType === 'Warehouse';
+function routeLead(projectDetails: string, facilityType: string) {
+  // Check for enterprise indicators in project details
+  const projectDetailsLower = projectDetails.toLowerCase();
+  const hasEnterpriseKeywords = 
+    projectDetailsLower.includes('200+') ||
+    projectDetailsLower.includes('enterprise') ||
+    projectDetailsLower.includes('multiple locations') ||
+    projectDetailsLower.includes('campus') ||
+    projectDetailsLower.includes('data center') ||
+    facilityType === 'Warehouse';
 
-  if (isSmallBusiness) {
-    return {
-      owner: process.env.ZOHO_MAZZY_ID || 'Mazzy_ID',
-      tag: 'Small_Business_Lead',
-      priority: 'Normal',
-    };
-  } else if (isEnterprise) {
+  // Check for small business indicators
+  const hasSmallBusinessKeywords =
+    projectDetailsLower.includes('1-10') ||
+    projectDetailsLower.includes('small') ||
+    projectDetailsLower.includes('single location') ||
+    projectDetailsLower.includes('office');
+
+  if (hasEnterpriseKeywords) {
     return {
       owner: process.env.ZOHO_PRESTON_ID || 'Preston_Brown_ID',
       tag: 'Enterprise_Opp_High_Value',
       priority: 'Urgent',
+    };
+  } else if (hasSmallBusinessKeywords) {
+    return {
+      owner: process.env.ZOHO_MAZZY_ID || 'Mazzy_ID',
+      tag: 'Small_Business_Lead',
+      priority: 'Normal',
     };
   }
 
@@ -44,7 +58,7 @@ export async function POST(request: NextRequest) {
     const data: LeadData = await request.json();
 
     // Validate required fields
-    if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.dropCount || !data.facilityType) {
+    if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.projectDetails || !data.facilityType) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -52,7 +66,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Route the lead based on business logic
-    const routing = routeLead(data.dropCount, data.facilityType);
+    const routing = routeLead(data.projectDetails, data.facilityType);
 
     // Prepare Zoho payload
     const zohoPayload = {
@@ -61,7 +75,7 @@ export async function POST(request: NextRequest) {
       Company: data.companyName,
       Email: data.email,
       Phone: data.phone,
-      Drop_Count: data.dropCount,
+      Project_Details: data.projectDetails,
       Facility_Type: data.facilityType,
       City: data.city,
       State: data.state,
@@ -69,7 +83,7 @@ export async function POST(request: NextRequest) {
       Tag: routing.tag,
       Priority: routing.priority,
       Lead_Source: 'Website',
-      Description: `Lead from ${data.city}, ${data.state}. Drop Count: ${data.dropCount}, Facility Type: ${data.facilityType}`,
+      Description: `Lead from ${data.city}, ${data.state}. Facility Type: ${data.facilityType}. Project Details: ${data.projectDetails}`,
     };
 
     // Send to Zoho CRM

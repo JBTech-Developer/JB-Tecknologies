@@ -204,66 +204,66 @@ export default function ProjectPlanner() {
   };
 
   const getStepCircleClass = (step: number) => {
-    if (step < currentStep) return 'bg-[#5BA5A5] text-white';
-    if (step === currentStep) return 'bg-[#245B8A] text-white scale-110';
-    return 'bg-gray-300 text-gray-600';
+    if (step < currentStep) return 'bg-luxury-gold text-white luxury-shadow';
+    if (step === currentStep) return 'bg-luxury-gold text-white scale-110 luxury-shadow-lg';
+    return 'bg-luxury-beige text-luxury-black/40 border border-luxury-beige';
   };
 
   const getConnectorClass = (connector: number) => {
     return connector < currentStep - 1
-      ? 'bg-[#5BA5A5]'
-      : 'bg-gray-300';
+      ? 'bg-luxury-gold'
+      : 'bg-luxury-beige';
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-luxury-offwhite">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
-        <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-8 md:p-12 shadow-2xl border border-white/10">
-          <div className="max-w-3xl mb-8">
-            <span className="inline-flex items-center gap-2 text-sm uppercase tracking-wider bg-white/10 px-4 py-2 rounded-full border border-white/20 mb-4">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 lg:pt-16 pb-16 lg:pb-20">
+        <div className="rounded-lg bg-gradient-to-br from-luxury-black via-luxury-black/95 to-luxury-black/90 text-white p-10 lg:p-16 luxury-shadow-lg border border-luxury-gold/20">
+          <div className="max-w-3xl mb-12">
+            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-wider bg-luxury-gold/20 px-5 py-2.5 rounded-sm border border-luxury-gold/30 mb-6 text-luxury-gold">
               <span>✨</span> JB Planner
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-display font-semibold mb-6 leading-tight">
               Build-ready intelligence for your next rollout.
             </h2>
-            <p className="text-lg text-gray-300">
+            <p className="text-lg lg:text-xl text-white/90 font-light">
               Upload your RFP, pick the services you need, and our team will return a tailored plan within one business day.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="w-14 h-14 rounded-xl bg-[#5BA5A5]/20 flex items-center justify-center mb-4">
-                <FaLayerGroup className="text-2xl" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-12">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 lg:p-8 border border-white/20 hover-lift transition-all duration-300">
+              <div className="w-14 h-14 rounded-lg bg-luxury-gold/20 flex items-center justify-center mb-4">
+                <FaLayerGroup className="text-2xl text-luxury-gold" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">500+ Programs</h3>
-              <p className="text-sm text-gray-300">From corporate interiors to nationwide rollouts.</p>
+              <h3 className="text-lg font-display font-semibold mb-2">500+ Programs</h3>
+              <p className="text-sm text-white/80">From corporate interiors to nationwide rollouts.</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="w-14 h-14 rounded-xl bg-[#5BA5A5]/20 flex items-center justify-center mb-4">
-                <FaBuilding className="text-2xl" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 lg:p-8 border border-white/20 hover-lift transition-all duration-300">
+              <div className="w-14 h-14 rounded-lg bg-luxury-gold/20 flex items-center justify-center mb-4">
+                <FaBuilding className="text-2xl text-luxury-gold" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Mission-ready</h3>
-              <p className="text-sm text-gray-300">Secure hangars, data centers, labs, and more.</p>
+              <h3 className="text-lg font-display font-semibold mb-2">Mission-ready</h3>
+              <p className="text-sm text-white/80">Secure hangars, data centers, labs, and more.</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="w-14 h-14 rounded-xl bg-[#5BA5A5]/20 flex items-center justify-center mb-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 lg:p-8 border border-white/20 hover-lift transition-all duration-300">
+              <div className="w-14 h-14 rounded-lg bg-luxury-gold/20 flex items-center justify-center mb-4">
                 <span className="text-2xl">⚡</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Rapid Response</h3>
-              <p className="text-sm text-gray-300">Dedicated teams mobilized within days.</p>
+              <h3 className="text-lg font-display font-semibold mb-2">Rapid Response</h3>
+              <p className="text-sm text-white/80">Dedicated teams mobilized within days.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Project Planning Tool - Upload Plans for Free Quote
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-16 lg:pb-24">
+        <div className="text-center mb-12 lg:mb-16 fade-in">
+          <h1 className="text-3xl lg:text-5xl font-display font-semibold text-luxury-black mb-4">
+            Project Planning Tool
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl lg:text-2xl text-luxury-black/70 font-light">
             Step through a quick briefing so our team can respond with the right specialists.
           </p>
         </div>
@@ -272,42 +272,42 @@ export default function ProjectPlanner() {
           {/* Main Content */}
           <section className="space-y-6">
             {/* Progress Indicator */}
-            <div className="mb-8">
-              <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="mb-12">
+              <div className="flex items-center justify-center gap-2 mb-6">
                 {[1, 2, 3, 4].map((step) => (
                   <div key={step} className="flex items-center">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${getStepCircleClass(step)}`}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 ${getStepCircleClass(step)}`}
                     >
                       {step}
                     </div>
                     {step < 4 && (
                       <div
-                        className={`w-16 h-1 mx-2 transition-all ${getConnectorClass(step)}`}
+                        className={`w-20 h-0.5 mx-2 transition-all duration-300 ${getConnectorClass(step)}`}
                       />
                     )}
                   </div>
                 ))}
               </div>
-              <p className="text-center text-sm text-gray-600 font-medium">
+              <p className="text-center text-sm text-luxury-black/60 font-medium uppercase tracking-wide">
                 Step {currentStep} of {totalSteps}
               </p>
             </div>
 
             {/* Step 1: Project Type */}
             {currentStep === 1 && (
-              <div className="bg-white rounded-2xl shadow-xl p-6 md:p-12">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-[#245B8A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaLayerGroup className="text-3xl text-[#245B8A]" />
+              <div className="bg-white rounded-lg luxury-shadow-lg p-8 lg:p-12 border border-luxury-beige fade-in">
+                <div className="text-center mb-10">
+                  <div className="w-16 h-16 bg-luxury-gold/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <FaLayerGroup className="text-3xl text-luxury-gold" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl lg:text-4xl font-display font-semibold text-luxury-black mb-3">
                     What type of project are you planning?
                   </h2>
-                  <p className="text-gray-600">Choose the category that best matches your scope.</p>
+                  <p className="text-lg text-luxury-black/70">Choose the category that best matches your scope.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-10">
                   {PROJECT_TYPES.map((type) => {
                     const Icon = type.icon;
                     return (
@@ -315,18 +315,22 @@ export default function ProjectPlanner() {
                         key={type.value}
                         type="button"
                         onClick={() => updateProject('projectType', type.value)}
-                        className={`p-5 rounded-xl border-2 transition-all text-left flex gap-4 items-start ${
+                        className={`p-6 rounded-lg border-2 transition-all duration-300 text-left flex gap-4 items-start hover-lift ${
                           project.projectType === type.value
-                            ? 'border-[#245B8A] bg-gradient-to-br from-[#245B8A]/10 to-[#5BA5A5]/10 shadow-lg'
-                            : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                            ? 'border-luxury-gold bg-luxury-beige/30 luxury-shadow-lg'
+                            : 'border-luxury-beige hover:border-luxury-gold/50 hover:shadow-md bg-white'
                         }`}
                       >
-                        <div className="w-12 h-12 rounded-xl bg-[#245B8A]/12 flex items-center justify-center flex-shrink-0">
-                          <Icon className="text-xl text-[#245B8A]" />
+                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          project.projectType === type.value ? 'bg-luxury-gold/20' : 'bg-luxury-beige/30'
+                        }`}>
+                          <Icon className={`text-xl ${project.projectType === type.value ? 'text-luxury-gold' : 'text-luxury-black/60'}`} />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg mb-1">{type.title}</h3>
-                          <p className="text-sm text-gray-600">{type.subtitle}</p>
+                          <h3 className={`font-display font-semibold text-lg mb-1 ${
+                            project.projectType === type.value ? 'text-luxury-black' : 'text-luxury-black'
+                          }`}>{type.title}</h3>
+                          <p className="text-sm text-luxury-black/70">{type.subtitle}</p>
                         </div>
                       </button>
                     );
@@ -337,7 +341,7 @@ export default function ProjectPlanner() {
                   <button
                     onClick={() => goToStep(2)}
                     disabled={!validateStep(1)}
-                    className="px-6 py-3 bg-[#245B8A] text-white rounded-lg font-semibold hover:bg-[#1a4666] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 luxury-shadow hover-lift uppercase tracking-wide text-sm"
                   >
                     Continue <FaArrowRight />
                   </button>
@@ -347,20 +351,20 @@ export default function ProjectPlanner() {
 
             {/* Step 2: Timeline & Location */}
             {currentStep === 2 && (
-              <div className="bg-white rounded-2xl shadow-xl p-6 md:p-12">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-[#245B8A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaLocationDot className="text-3xl text-[#245B8A]" />
+              <div className="bg-white rounded-lg luxury-shadow-lg p-8 lg:p-12 border border-luxury-beige fade-in">
+                <div className="text-center mb-10">
+                  <div className="w-16 h-16 bg-luxury-gold/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <FaLocationDot className="text-3xl text-luxury-gold" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl lg:text-4xl font-display font-semibold text-luxury-black mb-3">
                     Timeline & Location
                   </h2>
-                  <p className="text-gray-600">Share where the work will happen and when you need to mobilize.</p>
+                  <p className="text-lg text-luxury-black/70">Share where the work will happen and when you need to mobilize.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div>
-                    <label htmlFor="project-location" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="project-location" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                       Project location
                     </label>
                     <input
@@ -368,19 +372,19 @@ export default function ProjectPlanner() {
                       type="text"
                       value={project.location}
                       onChange={(e) => updateProject('location', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                      className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                       placeholder="City, state or facility"
                     />
                   </div>
                   <div>
-                    <label htmlFor="project-timeline" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="project-timeline" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                       Desired start
                     </label>
                     <select
                       id="project-timeline"
                       value={project.timeline}
                       onChange={(e) => updateProject('timeline', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                      className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                     >
                       <option value="">Select timeline</option>
                       {TIMELINE_OPTIONS.map((opt) => (
@@ -391,14 +395,14 @@ export default function ProjectPlanner() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="project-budget" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="project-budget" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                       Budget range
                     </label>
                     <select
                       id="project-budget"
                       value={project.budget}
                       onChange={(e) => updateProject('budget', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                      className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                     >
                       <option value="">Select range</option>
                       {BUDGET_OPTIONS.map((opt) => (
@@ -410,17 +414,17 @@ export default function ProjectPlanner() {
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-600 mb-4">Optional: upload an RFP, schematic set, or scope summary.</p>
+                <p className="text-sm text-luxury-black/70 mb-6">Optional: upload an RFP, schematic set, or scope summary.</p>
 
-                <div className="mb-6">
+                <div className="mb-8">
                   <label
                     htmlFor="file-upload"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-luxury-beige rounded-lg cursor-pointer bg-luxury-beige/10 hover:bg-luxury-beige/20 transition-colors duration-300"
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <FaUpload className="text-5xl text-gray-400 mb-4" />
-                      <p className="mb-2 text-sm font-semibold text-gray-500">Click to upload or drag and drop</p>
-                      <p className="text-xs text-gray-500">PDF, DOC, DOCX (MAX. 10MB)</p>
+                      <FaUpload className="text-5xl text-luxury-gold/60 mb-4" />
+                      <p className="mb-2 text-sm font-medium text-luxury-black">Click to upload or drag and drop</p>
+                      <p className="text-xs text-luxury-black/60">PDF, DOC, DOCX (MAX. 10MB)</p>
                     </div>
                     <input
                       id="file-upload"
@@ -432,13 +436,13 @@ export default function ProjectPlanner() {
                   </label>
 
                   {filePreview && (
-                    <div className="mt-4 p-4 bg-[#245B8A]/10 rounded-lg flex items-center gap-3">
-                      <FaFile className="text-2xl text-[#245B8A]" />
+                    <div className="mt-4 p-4 bg-luxury-beige/30 border border-luxury-gold/30 rounded-sm flex items-center gap-3">
+                      <FaFile className="text-2xl text-luxury-gold" />
                       <div className="flex-1">
-                        <p className="font-semibold text-gray-900">{filePreview.name}</p>
-                        <p className="text-sm text-gray-600">{filePreview.size}</p>
+                        <p className="font-semibold text-luxury-black">{filePreview.name}</p>
+                        <p className="text-sm text-luxury-black/70">{filePreview.size}</p>
                       </div>
-                      <FaCheckCircle className="text-2xl text-green-500" />
+                      <FaCheckCircle className="text-2xl text-luxury-gold" />
                     </div>
                   )}
                 </div>
@@ -446,14 +450,14 @@ export default function ProjectPlanner() {
                 <div className="flex gap-4">
                   <button
                     onClick={() => goToStep(1)}
-                    className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-all flex items-center gap-2"
+                    className="px-6 py-3 bg-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/80 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
                   >
                     <FaArrowLeft /> Back
                   </button>
                   <button
                     onClick={() => goToStep(3)}
                     disabled={!validateStep(2)}
-                    className="px-6 py-3 bg-[#245B8A] text-white rounded-lg font-semibold hover:bg-[#1a4666] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto"
+                    className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
                   >
                     Continue <FaArrowRight />
                   </button>
@@ -463,27 +467,27 @@ export default function ProjectPlanner() {
 
             {/* Step 3: Services */}
             {currentStep === 3 && (
-              <div className="bg-white rounded-2xl shadow-xl p-6 md:p-12">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-[#245B8A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaScrewdriverWrench className="text-3xl text-[#245B8A]" />
+              <div className="bg-white rounded-lg luxury-shadow-lg p-8 lg:p-12 border border-luxury-beige fade-in">
+                <div className="text-center mb-10">
+                  <div className="w-16 h-16 bg-luxury-gold/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <FaScrewdriverWrench className="text-3xl text-luxury-gold" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl lg:text-4xl font-display font-semibold text-luxury-black mb-3">
                     Which services do you need?
                   </h2>
-                  <p className="text-gray-600">Select all that apply so we can route to the right specialists.</p>
+                  <p className="text-lg text-luxury-black/70">Select all that apply so we can route to the right specialists.</p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 mb-10">
                   {SERVICES.map((service) => (
                     <button
                       key={service}
                       type="button"
                       onClick={() => toggleService(service)}
-                      className={`px-4 py-3 rounded-full border-2 font-semibold text-sm transition-all ${
+                      className={`px-4 py-3 rounded-sm border-2 font-medium text-xs transition-all duration-300 uppercase tracking-wide ${
                         project.services.includes(service)
-                          ? 'bg-[#245B8A] text-white border-[#245B8A] shadow-lg'
-                          : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
+                          ? 'bg-luxury-gold text-white border-luxury-gold luxury-shadow-lg'
+                          : 'bg-white text-luxury-black border-luxury-beige hover:border-luxury-gold/50 hover:shadow-md'
                       }`}
                     >
                       {service}
@@ -494,14 +498,14 @@ export default function ProjectPlanner() {
                 <div className="flex gap-4">
                   <button
                     onClick={() => goToStep(2)}
-                    className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-all flex items-center gap-2"
+                    className="px-6 py-3 bg-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/80 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
                   >
                     <FaArrowLeft /> Back
                   </button>
                   <button
                     onClick={() => goToStep(4)}
                     disabled={!validateStep(3)}
-                    className="px-6 py-3 bg-[#245B8A] text-white rounded-lg font-semibold hover:bg-[#1a4666] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto"
+                    className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
                   >
                     Continue <FaArrowRight />
                   </button>
@@ -511,21 +515,21 @@ export default function ProjectPlanner() {
 
             {/* Step 4: Contact Form */}
             {currentStep === 4 && (
-              <div className="bg-white rounded-2xl shadow-xl p-6 md:p-12">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-[#245B8A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaUserCheck className="text-3xl text-[#245B8A]" />
+              <div className="bg-white rounded-lg luxury-shadow-lg p-8 lg:p-12 border border-luxury-beige fade-in">
+                <div className="text-center mb-10">
+                  <div className="w-16 h-16 bg-luxury-gold/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <FaUserCheck className="text-3xl text-luxury-gold" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl lg:text-4xl font-display font-semibold text-luxury-black mb-3">
                     Who should we connect with?
                   </h2>
-                  <p className="text-gray-600">We'll follow up within one business day with next steps.</p>
+                  <p className="text-lg text-luxury-black/70">We'll follow up within one business day with next steps.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="firstName" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                         First name
                       </label>
                       <input
@@ -533,13 +537,13 @@ export default function ProjectPlanner() {
                         type="text"
                         value={contact.firstName}
                         onChange={(e) => updateContact('firstName', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                        className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                         placeholder="Jordan"
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="lastName" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                         Last name
                       </label>
                       <input
@@ -547,13 +551,13 @@ export default function ProjectPlanner() {
                         type="text"
                         value={contact.lastName}
                         onChange={(e) => updateContact('lastName', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                        className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                         placeholder="Lee"
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="company" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                         Organization
                       </label>
                       <input
@@ -561,13 +565,13 @@ export default function ProjectPlanner() {
                         type="text"
                         value={contact.company}
                         onChange={(e) => updateContact('company', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                        className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                         placeholder="Company / Department"
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                         Email
                       </label>
                       <input
@@ -575,13 +579,13 @@ export default function ProjectPlanner() {
                         type="email"
                         value={contact.email}
                         onChange={(e) => updateContact('email', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                        className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                         placeholder="you@company.com"
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="phone" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                         Phone
                       </label>
                       <input
@@ -589,13 +593,13 @@ export default function ProjectPlanner() {
                         type="tel"
                         value={contact.phone}
                         onChange={(e) => updateContact('phone', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                        className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                         placeholder="(555) 123-4567"
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="projectNotes" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="projectNotes" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                         Working title or facility
                       </label>
                       <input
@@ -603,21 +607,21 @@ export default function ProjectPlanner() {
                         type="text"
                         value={contact.projectNotes}
                         onChange={(e) => updateContact('projectNotes', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20"
+                        className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 bg-white text-luxury-black"
                         placeholder="e.g., ATL Innovation Center"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="projectDetails" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="projectDetails" className="block text-xs font-medium text-luxury-black mb-2 uppercase tracking-wide">
                       Project details
                     </label>
                     <textarea
                       id="projectDetails"
                       value={contact.projectDetails}
                       onChange={(e) => updateContact('projectDetails', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#245B8A] focus:outline-none focus:ring-2 focus:ring-[#245B8A]/20 h-32 resize-none"
+                      className="w-full px-4 py-3 border border-luxury-beige rounded-sm focus:border-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold/20 h-32 resize-none bg-white text-luxury-black"
                       placeholder="Tell us about goals, constraints, or success metrics."
                       required
                     />
@@ -629,9 +633,9 @@ export default function ProjectPlanner() {
                       type="checkbox"
                       checked={newsletter}
                       onChange={(e) => setNewsletter(e.target.checked)}
-                      className="mt-1"
+                      className="mt-1 w-4 h-4 text-luxury-gold border-luxury-beige rounded focus:ring-luxury-gold"
                     />
-                    <label htmlFor="newsletter" className="text-sm text-gray-700">
+                    <label htmlFor="newsletter" className="text-sm text-luxury-black/70">
                       Keep me informed about nationwide deployment tips and technology updates.
                     </label>
                   </div>
@@ -640,14 +644,14 @@ export default function ProjectPlanner() {
                     <button
                       type="button"
                       onClick={() => goToStep(3)}
-                      className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-all flex items-center gap-2"
+                      className="px-6 py-3 bg-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/80 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
                     >
                       <FaArrowLeft /> Back
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting || !validateStep(4)}
-                      className="px-6 py-3 bg-[#245B8A] text-white rounded-lg font-semibold hover:bg-[#1a4666] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto"
+                      className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
                     >
                       {isSubmitting ? 'Sending plan...' : 'Submit plan'} <FaPaperPlane />
                     </button>
@@ -659,90 +663,90 @@ export default function ProjectPlanner() {
 
           {/* Summary Sidebar */}
           <aside className="lg:sticky lg:top-24 self-start">
-            <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-              <p className="text-xs uppercase tracking-wider text-[#245B8A] font-bold mb-2">Live Summary</p>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Project Snapshot</h3>
+            <div className="bg-white rounded-lg luxury-shadow-lg p-6 lg:p-8 border border-luxury-beige fade-in">
+              <p className="text-xs uppercase tracking-wider text-luxury-gold font-semibold mb-3">Live Summary</p>
+              <h3 className="text-2xl lg:text-3xl font-display font-semibold text-luxury-black mb-8">Project Snapshot</h3>
 
-              <div className="h-px bg-gradient-to-r from-[#245B8A]/20 to-transparent my-6"></div>
+              <div className="h-px bg-gradient-to-r from-luxury-gold/20 to-transparent my-6"></div>
 
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-600 mb-1">Project Type</p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="text-xs uppercase tracking-wide text-luxury-black/60 mb-2">Project Type</p>
+                  <p className="font-display font-semibold text-luxury-black">
                     {project.projectType || 'Not selected'}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-600 mb-1">Location & Schedule</p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="text-xs uppercase tracking-wide text-luxury-black/60 mb-2">Location & Schedule</p>
+                  <p className="font-display font-semibold text-luxury-black">
                     {project.location || 'Not specified'}
                   </p>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-luxury-black/70 mt-2">
                     Timeline: {project.timeline || '—'}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-luxury-black/70">
                     Budget: {project.budget || '—'}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-600 mb-2">RFP Attachment</p>
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1.5 bg-[#245B8A]/8 rounded-full text-[#245B8A]">
+                  <p className="text-xs uppercase tracking-wide text-luxury-black/60 mb-2">RFP Attachment</p>
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1.5 bg-luxury-beige/30 rounded-sm text-luxury-black border border-luxury-beige">
                     <FaPaperclip /> {filePreview?.name || 'No file attached'}
                   </span>
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-600 mb-2">Services Needed</p>
+                  <p className="text-xs uppercase tracking-wide text-luxury-black/60 mb-3">Services Needed</p>
                   <div className="flex flex-wrap gap-2">
                     {project.services.length > 0 ? (
                       project.services.map((service) => (
                         <span
                           key={service}
-                          className="px-3 py-1 bg-[#245B8A]/12 text-[#245B8A] rounded-full text-sm font-semibold"
+                          className="px-3 py-1 bg-luxury-gold/10 text-luxury-black rounded-sm text-xs font-medium border border-luxury-gold/20"
                         >
                           {service}
                         </span>
                       ))
                     ) : (
-                      <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
+                      <span className="px-3 py-1 bg-luxury-beige/30 text-luxury-black/60 rounded-sm text-xs border border-luxury-beige">
                         No services selected
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className="h-px bg-gradient-to-r from-[#245B8A]/20 to-transparent my-6"></div>
+                <div className="h-px bg-gradient-to-r from-luxury-gold/20 to-transparent my-6"></div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-600 mb-1">Primary Contact</p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="text-xs uppercase tracking-wide text-luxury-black/60 mb-2">Primary Contact</p>
+                  <p className="font-display font-semibold text-luxury-black">
                     {contact.firstName || contact.lastName
                       ? `${contact.firstName} ${contact.lastName}`.trim()
                       : '—'}
                   </p>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-luxury-black/70 mt-2">
                     Organization: {contact.company || '—'}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-luxury-black/70">
                     Email: {contact.email || '—'}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-luxury-black/70">
                     Phone: {contact.phone || '—'}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-gray-600 mb-1">Notes</p>
-                  <p className="text-sm text-gray-900">
+                  <p className="text-xs uppercase tracking-wide text-luxury-black/60 mb-2">Notes</p>
+                  <p className="text-sm text-luxury-black/90">
                     {contact.projectDetails || contact.projectNotes || 'No additional details yet.'}
                   </p>
                 </div>
 
-                <div className="mt-6 p-4 rounded-xl bg-gradient-to-br from-[#245B8A]/10 to-[#5BA5A5]/15 text-sm text-gray-800">
-                  Need help right away? Call <strong>770-637-2094</strong> or{' '}
-                  <a href="/contact" className="text-[#245B8A] hover:underline font-semibold">
+                <div className="mt-6 p-4 rounded-lg bg-luxury-beige/20 border border-luxury-gold/20 text-sm text-luxury-black">
+                  Need help right away? Call <strong className="text-luxury-gold">770-637-2094</strong> or{' '}
+                  <a href="/contact" className="text-luxury-gold hover:underline font-semibold">
                     contact our team
                   </a>
                   .

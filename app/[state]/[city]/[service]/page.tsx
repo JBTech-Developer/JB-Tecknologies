@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import { getCityBySlugSync, getNearbyCities, getAllCitiesSync } from '@/lib/cities';
 import { getAllServicesSync, getServiceBySlug } from '@/lib/services';
 import { generateServiceCityContent } from '@/lib/content-generator';
@@ -133,60 +134,82 @@ export default async function ServiceCityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <div className="container mx-auto px-4 py-8 pb-24 lg:pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            {/* Hero Section */}
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold mb-4">
-                {service.service_name} in {city.name}, {city.stateAbbr}
-              </h1>
-              <div className="w-full h-64 bg-muted rounded-lg mb-4 overflow-hidden relative">
-                {/* Dynamic Hero Image using Cloudinary URL API with hero_overlay_text template */}
-                <img
-                  src={`https://res.cloudinary.com/jbtech/image/upload/w_1000,co_white,l_text:Arial_80_bold:${encodeURIComponent(service.hero_overlay_text.replace(/{City}/g, city.name))}/cabling-bg.jpg`}
-                  alt={`${service.service_name} services in ${city.name}, ${city.stateAbbr}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+      
+      {/* Hero Section */}
+      <section className="relative h-[60vh] lg:h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-luxury-black via-luxury-black/95 to-luxury-black/90">
+        <div className="absolute inset-0 bg-luxury-black">
+          <Image
+            src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1920&q=80"
+            alt={`${service.service_name} services in ${city.name}, ${city.stateAbbr} - Professional network cabling and infrastructure solutions`}
+            fill
+            className="object-cover opacity-50"
+            priority
+            sizes="100vw"
+          />
+        </div>
+        <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center text-white">
+          <h1 className="text-4xl lg:text-6xl font-display font-bold mb-4 fade-in">
+            {service.service_name} in {city.name}, {city.stateAbbr}
+          </h1>
+          <p className="text-xl lg:text-2xl font-light text-white/90 fade-in">
+            Professional network infrastructure solutions
+          </p>
+        </div>
+      </section>
 
+      <div className="container mx-auto px-6 lg:px-8 py-16 lg:py-24 pb-24 lg:pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-16">
             {/* Introduction */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">{service.service_name} Services in {city.name}</h2>
-              <p className="text-lg leading-relaxed whitespace-pre-line">
+            <section className="fade-in">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                {service.service_name} Services in {city.name}
+              </h2>
+              <p className="text-lg leading-relaxed text-luxury-black/70 whitespace-pre-line">
                 {content.introduction}
               </p>
             </section>
 
             {/* Services */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">Our {service.service_name} Services</h2>
-              <p className="text-lg leading-relaxed whitespace-pre-line">
+            <section className="fade-in">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                Our {service.service_name} Services
+              </h2>
+              <p className="text-lg leading-relaxed text-luxury-black/70 whitespace-pre-line mb-6">
                 {content.services}
               </p>
               {service.keywords && service.keywords.length > 0 && (
-                <ul className="list-disc list-inside mt-4 space-y-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
                   {service.keywords.map((keyword, index) => (
-                    <li key={index}>{keyword}</li>
+                    <div 
+                      key={index}
+                      className="flex items-center gap-3 p-4 bg-luxury-beige/30 rounded-sm border border-luxury-beige"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-luxury-blue flex-shrink-0"></div>
+                      <span className="text-luxury-black">{keyword}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               )}
             </section>
 
             {/* Service Area */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">Service Area</h2>
-              <p className="text-lg leading-relaxed whitespace-pre-line">
+            <section className="fade-in">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                Service Area
+              </h2>
+              <p className="text-lg leading-relaxed text-luxury-black/70 whitespace-pre-line">
                 {content.serviceArea}
               </p>
             </section>
 
             {/* Map */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">Our Location</h2>
-              <div className="w-full h-96 bg-muted rounded-lg overflow-hidden">
+            <section className="fade-in">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                Our Location
+              </h2>
+              <div className="w-full h-96 lg:h-[500px] rounded-lg overflow-hidden luxury-shadow-lg">
                 {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? (
                   <img 
                     src={mapUrl} 
@@ -194,7 +217,7 @@ export default async function ServiceCityPage({
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                  <div className="w-full h-full flex items-center justify-center bg-luxury-beige/20 text-luxury-black/60">
                     Google Maps API key required
                   </div>
                 )}
@@ -204,8 +227,8 @@ export default async function ServiceCityPage({
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            {/* Sticky Form - Hidden on mobile */}
-            <div className="hidden lg:block sticky top-4">
+            {/* Form - Not sticky to prevent covering other widgets */}
+            <div className="hidden lg:block fade-in">
               <LeadForm city={city.name} state={city.stateAbbr} />
             </div>
             
@@ -213,9 +236,9 @@ export default async function ServiceCityPage({
             <MobileLeadButton city={city.name} state={city.stateAbbr} />
 
             {/* Nearby Cities Widget */}
-            <div className="mt-8 border rounded-lg p-6">
-              <h3 className="font-bold text-lg mb-4">Nearby Service Areas</h3>
-              <ul className="space-y-2">
+            <div className="mt-8 lg:mt-12 border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow fade-in">
+              <h3 className="font-display text-xl font-semibold mb-6 text-luxury-black">Nearby Service Areas</h3>
+              <ul className="space-y-3">
                 {nearbyCities.map((nearbyCity) => {
                   const citySlug = nearbyCity.name.toLowerCase().replace(/\s+/g, '-');
                   const stateSlug = resolvedParams.state;
@@ -223,8 +246,9 @@ export default async function ServiceCityPage({
                     <li key={nearbyCity.name}>
                       <Link
                         href={`/${stateSlug}/${citySlug}/${resolvedParams.service}`}
-                        className="text-primary hover:underline"
+                        className="text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 text-sm flex items-center gap-2 group"
                       >
+                        <span className="w-1.5 h-1.5 rounded-full bg-luxury-blue/30 group-hover:bg-luxury-blue transition-colors"></span>
                         {service.service_name} in {nearbyCity.name}
                       </Link>
                     </li>
@@ -234,9 +258,9 @@ export default async function ServiceCityPage({
             </div>
 
             {/* Other Services Widget */}
-            <div className="mt-8 border rounded-lg p-6">
-              <h3 className="font-bold text-lg mb-4">Other Services in {city.name}</h3>
-              <ul className="space-y-2">
+            <div className="mt-8 border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow fade-in">
+              <h3 className="font-display text-xl font-semibold mb-6 text-luxury-black">Other Services in {city.name}</h3>
+              <ul className="space-y-3">
                 {getAllServicesSync()
                   .filter(s => s.slug !== service.slug)
                   .slice(0, 4)
@@ -247,8 +271,9 @@ export default async function ServiceCityPage({
                       <li key={otherService.slug}>
                         <Link
                           href={`/${stateSlug}/${citySlug}/${otherService.slug}`}
-                          className="text-primary hover:underline"
+                          className="text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 text-sm flex items-center gap-2 group"
                         >
+                          <span className="w-1.5 h-1.5 rounded-full bg-luxury-blue/30 group-hover:bg-luxury-blue transition-colors"></span>
                           {otherService.service_name}
                         </Link>
                       </li>

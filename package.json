@@ -11,6 +11,8 @@
     "import-cities": "tsx scripts/import-cities.ts",
     "generate-city-data": "tsx scripts/generate-city-data.ts",
     "generate-5000-cities": "tsx scripts/generate-5000-cities.ts",
+    "update-populations": "tsx scripts/update-city-populations.ts",
+    "import-populations": "tsx scripts/import-city-populations.ts",
     "verify-build": "tsx scripts/verify-build.ts"
   },
   "dependencies": {

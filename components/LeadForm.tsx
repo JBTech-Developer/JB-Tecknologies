@@ -25,7 +25,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
     companyName: '',
     email: '',
     phone: '',
-    dropCount: '',
+    projectDetails: '',
     facilityType: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,7 +57,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
           companyName: '',
           email: '',
           phone: '',
-          dropCount: '',
+          projectDetails: '',
           facilityType: '',
         });
         // Close mobile form after 2 seconds
@@ -78,9 +78,10 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
   };
 
   return (
-    <div className="border rounded-lg p-6 bg-card">
-      <h2 className="text-2xl font-bold mb-4">Request a Quote</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="border border-luxury-beige rounded-lg p-8 lg:p-10 bg-white luxury-shadow-lg">
+      <h2 className="text-3xl font-display font-bold mb-2 text-luxury-black">Request a Quote</h2>
+      <p className="text-sm text-luxury-black/60 mb-8 uppercase tracking-wide">Get started today</p>
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label htmlFor="firstName">First Name</Label>
@@ -89,6 +90,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
               required
               value={formData.firstName}
               onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              className="mt-2"
             />
           </div>
           <div>
@@ -98,6 +100,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
               required
               value={formData.lastName}
               onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              className="mt-2"
             />
           </div>
         </div>
@@ -109,6 +112,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
             required
             value={formData.companyName}
             onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+            className="mt-2"
           />
         </div>
 
@@ -120,6 +124,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="mt-2"
           />
         </div>
 
@@ -131,26 +136,21 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
             required
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="mt-2"
           />
         </div>
 
         <div>
-          <Label htmlFor="dropCount">Drop Count</Label>
-          <Select
-            value={formData.dropCount}
-            onValueChange={(value) => setFormData({ ...formData, dropCount: value })}
+          <Label htmlFor="projectDetails">Project Details</Label>
+          <textarea
+            id="projectDetails"
             required
-          >
-            <SelectTrigger id="dropCount">
-              <SelectValue placeholder="Select drop count" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1-10">1-10</SelectItem>
-              <SelectItem value="11-50">11-50</SelectItem>
-              <SelectItem value="51-200">51-200</SelectItem>
-              <SelectItem value="200+">200+</SelectItem>
-            </SelectContent>
-          </Select>
+            value={formData.projectDetails}
+            onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
+            className="mt-2 flex min-h-[100px] w-full rounded-sm border border-luxury-beige bg-white px-4 py-3 text-sm text-luxury-black ring-offset-background placeholder:text-luxury-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-luxury-blue focus-visible:ring-offset-2 focus-visible:border-luxury-blue transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 resize-y"
+            placeholder="Tell us about your project (e.g., number of locations, square footage, specific requirements, timeline, etc.)"
+            rows={4}
+          />
         </div>
 
         <div>
@@ -160,7 +160,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
             onValueChange={(value) => setFormData({ ...formData, facilityType: value })}
             required
           >
-            <SelectTrigger id="facilityType">
+            <SelectTrigger id="facilityType" className="mt-2">
               <SelectValue placeholder="Select facility type" />
             </SelectTrigger>
             <SelectContent>
@@ -173,18 +173,18 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
         </div>
 
         {submitStatus === 'success' && (
-          <div className="p-3 bg-green-50 text-green-800 rounded-md text-sm">
+          <div className="p-4 bg-luxury-beige/30 border border-luxury-blue/30 rounded-sm text-sm text-luxury-black">
             Thank you! We'll be in touch shortly.
           </div>
         )}
 
         {submitStatus === 'error' && (
-          <div className="p-3 bg-red-50 text-red-800 rounded-md text-sm">
+          <div className="p-4 bg-red-50 border border-red-200 rounded-sm text-sm text-red-800">
             There was an error submitting your request. Please try again.
           </div>
         )}
 
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" className="w-full bg-luxury-blue hover:bg-luxury-blue/90 text-white" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Get a Quote'}
         </Button>
       </form>

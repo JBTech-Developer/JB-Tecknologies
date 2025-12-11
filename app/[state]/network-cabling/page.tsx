@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { getStateBySlug, getCitiesByState, getAllStates, getAllCitiesSync } from '@/lib/cities';
 import { getAllServicesSync } from '@/lib/services';
@@ -125,97 +126,135 @@ export default async function StatePage({
 
   return (
     <>
-      {/* Debug: Always show this to confirm component is rendering */}
-      <div className="bg-blue-100 border-4 border-blue-500 p-4 m-4">
-        <p className="text-blue-900 font-bold">✅ PAGE COMPONENT IS RENDERING!</p>
-        <p className="text-blue-800">State: {stateData.name}</p>
-        <p className="text-blue-800">Cities: {topCities.length}</p>
-        <p className="text-blue-800">Services: {services.length}</p>
-      </div>
-      <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4">
-        Network Cabling Services in {stateData.name}
-      </h1>
-      <p className="text-xl text-muted-foreground mb-8">
-        Professional low-voltage installation and structured cabling solutions throughout {stateData.name}
-      </p>
-
-      {/* Map Section */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Service Areas in {stateData.name}</h2>
-        <div className="w-full h-96 bg-muted rounded-lg overflow-hidden">
-          {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? (
-            <img 
-              src={mapUrl} 
-              alt={`Map of ${stateData.name} service areas`}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              Google Maps API key required
-            </div>
-          )}
+      {/* Hero Section */}
+      <section className="relative h-[50vh] lg:h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-luxury-black via-luxury-black/95 to-luxury-black/90">
+        <div className="absolute inset-0 bg-luxury-black">
+          <Image 
+            src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1920&q=80" 
+            alt="Network cabling infrastructure"
+            fill
+            className="object-cover opacity-50"
+            priority
+            sizes="100vw"
+          />
         </div>
-      </div>
-
-      {/* Services Section */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Our Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.length === 0 ? (
-            <div className="col-span-full p-4 border border-yellow-500 bg-yellow-50 rounded">
-              <p className="text-yellow-800">⚠️ No services found. Check console for details.</p>
-            </div>
-          ) : (
-            services.map((service) => (
-            <div key={service.slug} className="border rounded-lg p-4">
-              <h3 className="font-bold text-lg mb-2">{service.service_name}</h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                <span className="text-xs font-semibold text-primary">{service.category}</span>
-              </p>
-              <p className="text-sm text-muted-foreground mb-3">
-                {service.meta_desc_template.replace(/{City}/g, stateData.name)}
-              </p>
-              <Link
-                href={`/${stateSlugForLinks}/${topCities[0]?.name.toLowerCase().replace(/\s+/g, '-') || 'atlanta'}/${service.slug}`}
-                className="text-primary hover:underline text-sm"
-              >
-                View Services →
-              </Link>
-            </div>
-            ))
-          )}
+        <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center text-white">
+          <h1 className="text-4xl lg:text-6xl font-display font-bold mb-4 fade-in">
+            Network Cabling Services in {stateData.name}
+          </h1>
+          <p className="text-xl lg:text-2xl font-light text-white/90 fade-in">
+            Professional low-voltage installation and structured cabling solutions throughout {stateData.name}
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Cities Grid */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Top Cities We Serve</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {topCities.length === 0 ? (
-            <div className="col-span-full p-4 border border-yellow-500 bg-yellow-50 rounded">
-              <p className="text-yellow-800">⚠️ No cities found. Check console for details.</p>
-            </div>
-          ) : (
-            topCities.map((city) => {
-            const citySlug = city.name.toLowerCase().replace(/\s+/g, '-');
-            // Link to default service (voice-data-cabling-installers) for backwards compatibility
-            return (
-              <Link
-                key={city.name}
-                href={`/${stateSlugForLinks}/${citySlug}/voice-data-cabling-installers`}
-                className="border rounded-lg p-4 hover:border-primary hover:shadow-md transition-all"
-              >
-                <h3 className="font-bold text-lg mb-2">{city.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  Population: {city.population.toLocaleString()}
-                </p>
-              </Link>
-            );
-          })
-          )}
-        </div>
-      </div>
+      <div className="container mx-auto px-6 lg:px-8 py-16 lg:py-24">
+        {/* Map Section */}
+        <section className="mb-20 fade-in">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold mb-8 text-luxury-black text-center">
+            Service Areas in {stateData.name}
+          </h2>
+          <div className="w-full h-96 lg:h-[500px] rounded-lg overflow-hidden luxury-shadow-lg">
+            {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? (
+              <img 
+                src={mapUrl} 
+                alt={`Map of ${stateData.name} service areas`}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-luxury-beige/20 text-luxury-black/60">
+                Google Maps API key required
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section className="mb-20 fade-in">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold mb-4 text-luxury-black">
+              Our Services
+            </h2>
+            <p className="text-lg text-luxury-black/70 max-w-2xl mx-auto">
+              Comprehensive network infrastructure solutions across {stateData.name}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {services.length === 0 ? (
+              <div className="col-span-full p-6 border border-yellow-500 bg-yellow-50 rounded-lg">
+                <p className="text-yellow-800">⚠️ No services found. Check console for details.</p>
+              </div>
+            ) : (
+              services.map((service, index) => (
+                <div 
+                  key={service.slug} 
+                  className="border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow hover-lift transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <h3 className="font-display text-xl font-semibold mb-3 text-luxury-black">
+                    {service.service_name}
+                  </h3>
+                  <p className="text-xs font-semibold text-luxury-gold mb-3 uppercase tracking-wide">
+                    {service.category}
+                  </p>
+                  <p className="text-sm text-luxury-black/70 mb-4 leading-relaxed">
+                    {service.meta_desc_template.replace(/{City}/g, stateData.name)}
+                  </p>
+                  <Link
+                    href={`/${stateSlugForLinks}/${topCities[0]?.name.toLowerCase().replace(/\s+/g, '-') || 'atlanta'}/${service.slug}`}
+                    className="text-luxury-gold hover:text-luxury-black transition-colors duration-300 text-sm font-medium flex items-center gap-2 group"
+                  >
+                    View Services
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </Link>
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+
+        {/* Cities Grid */}
+        <section className="fade-in">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold mb-4 text-luxury-black">
+              Top Cities We Serve
+            </h2>
+            <p className="text-lg text-luxury-black/70 max-w-2xl mx-auto">
+              Professional network cabling services throughout {stateData.name}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {topCities.length === 0 ? (
+              <div className="col-span-full p-6 border border-yellow-500 bg-yellow-50 rounded-lg">
+                <p className="text-yellow-800">⚠️ No cities found. Check console for details.</p>
+              </div>
+            ) : (
+              topCities.map((city, index) => {
+                const citySlug = city.name.toLowerCase().replace(/\s+/g, '-');
+                // Link to default service (voice-data-cabling-installers) for backwards compatibility
+                return (
+                  <Link
+                    key={city.name}
+                    href={`/${stateSlugForLinks}/${citySlug}/voice-data-cabling-installers`}
+                    className="border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow hover-lift transition-all duration-300 group"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <h3 className="font-display text-xl font-semibold mb-2 text-luxury-black group-hover:text-luxury-blue transition-colors">
+                      {city.name}
+                    </h3>
+                    <p className="text-sm text-luxury-black/60">
+                      Population: {city.population.toLocaleString()}
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-luxury-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      Explore Services
+                      <span>→</span>
+                    </div>
+                  </Link>
+                );
+              })
+            )}
+          </div>
+        </section>
       </div>
     </>
   );

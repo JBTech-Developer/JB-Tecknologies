@@ -22,7 +22,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'maps.googleapis.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
+    unoptimized: false,
   },
   trailingSlash: true, // Re-enable trailing slash as per spec
   // Redirect old state routes to new format

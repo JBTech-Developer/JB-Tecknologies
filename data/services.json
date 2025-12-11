@@ -42,6 +42,13 @@
     "hero_overlay_text": "Rack Cleanup: {City}"
   },
   {
+    "category": "Structured Cabling",
+    "service_name": "Data Center Build-outs",
+    "slug": "data-center-buildouts",
+    "meta_desc_template": "Complete data center build-outs in {City}. We install server cabinets, hot/cold aisle containment, raised floors, and power distribution.",
+    "hero_overlay_text": "Data Centers: {City}"
+  },
+  {
     "category": "Audio Visual",
     "service_name": "Video Conferencing Rooms",
     "slug": "video-conferencing-installation",
@@ -75,6 +82,27 @@
     "slug": "public-address-system-installers",
     "meta_desc_template": "Overhead paging and zone PA systems for {City} warehouses, manufacturing plants, and schools.",
     "hero_overlay_text": "PA Systems: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Control Systems (Crestron, Extron, Q-Sys, AMX)",
+    "slug": "av-control-systems",
+    "meta_desc_template": "Professional AV control system installation in {City}. We integrate Crestron, Extron, Q-Sys, and AMX automation for seamless room control.",
+    "hero_overlay_text": "AV Control: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Projection Systems",
+    "slug": "projection-systems-installation",
+    "meta_desc_template": "Motorized screens, laser projectors, and auditorium projection setups for {City} conference rooms, classrooms, and event spaces.",
+    "hero_overlay_text": "Projection: {City}"
+  },
+  {
+    "category": "Audio Visual",
+    "service_name": "Interactive Displays",
+    "slug": "interactive-display-installation",
+    "meta_desc_template": "Smart boards and interactive touch displays for {City} classrooms, boardrooms, and collaborative workspaces.",
+    "hero_overlay_text": "Interactive Displays: {City}"
   },
   {
     "category": "Physical Security",
@@ -112,6 +140,20 @@
     "hero_overlay_text": "Security Gates: {City}"
   },
   {
+    "category": "Physical Security",
+    "service_name": "Specialty Security Cameras",
+    "slug": "specialty-security-cameras",
+    "meta_desc_template": "Thermal imaging, PTZ, panoramic, and specialty camera installation for {City} facilities requiring advanced surveillance capabilities.",
+    "hero_overlay_text": "Specialty Cameras: {City}"
+  },
+  {
+    "category": "Physical Security",
+    "service_name": "Visitor Management Systems",
+    "slug": "visitor-management-systems",
+    "meta_desc_template": "iPad check-in kiosks and badge printing systems for {City} offices, schools, and secure facilities.",
+    "hero_overlay_text": "Visitor Management: {City}"
+  },
+  {
     "category": "Life Safety",
     "service_name": "Commercial Fire Alarm Systems",
     "slug": "fire-alarm-system-installers",
@@ -140,6 +182,13 @@
     "hero_overlay_text": "Area of Refuge: {City}"
   },
   {
+    "category": "Life Safety",
+    "service_name": "Mass Notification Systems",
+    "slug": "mass-notification-systems",
+    "meta_desc_template": "Emergency alert and mass notification systems for {City} schools, campuses, and large facilities.",
+    "hero_overlay_text": "Mass Notification: {City}"
+  },
+  {
     "category": "Wireless",
     "service_name": "Commercial WiFi Installation",
     "slug": "commercial-wifi-installation",
@@ -161,6 +210,13 @@
     "hero_overlay_text": "Wireless Bridge: {City}"
   },
   {
+    "category": "Wireless",
+    "service_name": "Private LTE/5G Networks",
+    "slug": "private-lte-5g-networks",
+    "meta_desc_template": "Private cellular network deployment for {City} industrial and manufacturing facilities requiring dedicated LTE/5G coverage.",
+    "hero_overlay_text": "Private LTE/5G: {City}"
+  },
+  {
     "category": "Smart Building",
     "service_name": "Building Management Systems (BMS)",
     "slug": "building-management-systems",
@@ -180,6 +236,20 @@
     "slug": "smart-glass-installation",
     "meta_desc_template": "Switchable privacy glass installation and low-voltage integration for {City} conference rooms and executive offices.",
     "hero_overlay_text": "Smart Glass: {City}"
+  },
+  {
+    "category": "Smart Building",
+    "service_name": "Environmental Monitoring",
+    "slug": "environmental-monitoring-systems",
+    "meta_desc_template": "Temperature and humidity sensor installation for {City} server rooms, data centers, and critical infrastructure monitoring.",
+    "hero_overlay_text": "Env Monitoring: {City}"
+  },
+  {
+    "category": "Smart Building",
+    "service_name": "Occupancy Sensors",
+    "slug": "occupancy-sensor-installation",
+    "meta_desc_template": "Smart occupancy sensors for desk utilization and lighting automation in {City} offices and commercial spaces.",
+    "hero_overlay_text": "Occupancy Sensors: {City}"
   },
   {
     "category": "Parking Tech",
@@ -215,5 +285,12 @@
     "slug": "retail-pos-rollouts",
     "meta_desc_template": "National rollout services for {City} retail locations. We install POS registers, scan guns, and back-office IT gear.",
     "hero_overlay_text": "Retail POS: {City}"
+  },
+  {
+    "category": "IT Services",
+    "service_name": "Kiosks & ATMs Installation",
+    "slug": "kiosk-atm-installation",
+    "meta_desc_template": "Self-service kiosk and ATM installation and networking services for {City} retail, banking, and public facilities.",
+    "hero_overlay_text": "Kiosks & ATMs: {City}"
   }
 ]
