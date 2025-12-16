@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getStateBySlug, getCitiesByState, getAllStates, getAllCitiesSync } from '@/lib/cities';
 import { getAllServicesSync } from '@/lib/services';
+import InteractiveStateMap from '@/components/InteractiveStateMap';
 
 // Log when module loads
 console.log('🔵 STATE PAGE MODULE - File loaded! Route: [state]/network-cabling');
@@ -107,12 +108,6 @@ export default async function StatePage({
     console.error('🔴 STATE PAGE - No cities found! This will cause empty page.');
   }
 
-  // Generate map URL with all cities
-  const mapMarkers = cities.slice(0, 20).map(city => 
-    `markers=color:0x4285F4|label:${city.name.charAt(0)}|${city.latitude},${city.longitude}`
-  ).join('&');
-  const mapCenter = cities[0] || { latitude: 33.749, longitude: -84.388 };
-  const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${mapCenter.latitude},${mapCenter.longitude}&zoom=7&size=1200x600&${mapMarkers}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}`;
 
   // Use the state slug without suffix for city links
   const stateSlugForLinks = stateData.name.toLowerCase().replace(/\s+/g, '-');
@@ -154,19 +149,13 @@ export default async function StatePage({
           <h2 className="text-3xl lg:text-4xl font-display font-bold mb-8 text-luxury-black text-center">
             Service Areas in {stateData.name}
           </h2>
-          <div className="w-full h-96 lg:h-[500px] rounded-lg overflow-hidden luxury-shadow-lg">
-            {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? (
-              <img 
-                src={mapUrl} 
-                alt={`Map of ${stateData.name} service areas`}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-luxury-beige/20 text-luxury-black/60">
-                Google Maps API key required
-              </div>
-            )}
-          </div>
+          <InteractiveStateMap 
+            cities={cities}
+            centerCity={cities[0]}
+            height="500px"
+            className="h-96 lg:h-[500px]"
+            maxMarkers={20}
+          />
         </section>
 
         {/* Services Section */}

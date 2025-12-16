@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { City, Service } from './types';
+import { generateExpertServiceContent } from './service-expertise';
 
 // Lazy initialization of OpenAI client to avoid issues during module load
 function getOpenAIClient(): OpenAI | null {
@@ -82,6 +83,13 @@ export async function generateServiceCityContent(city: City, service: Service): 
   introduction: string;
   services: string;
   serviceArea: string;
+  overview: string;
+  technicalSpecs: string[];
+  useCases: string[];
+  benefits: string[];
+  installationProcess: string;
+  certifications: string[];
+  whyChooseUs: string;
 }> {
   const primaryZipCode = city.zipCodes && city.zipCodes.length > 0 ? city.zipCodes[0] : 'local';
   const county = city.county || `${city.name} County`;
@@ -91,31 +99,47 @@ export async function generateServiceCityContent(city: City, service: Service): 
   const serviceNameLower = service.service_name.toLowerCase();
   const introduction = `JB Technologies provides ${serviceNameLower} for businesses in ${city.name} and the surrounding ${county} region. We actively serve the ${primaryZipCode} area.`;
 
+  // Get expert service content
+  const expertise = generateExpertServiceContent(service, {
+    name: city.name,
+    stateAbbr: city.stateAbbr,
+    county: city.county,
+    zipCodes: city.zipCodes
+  });
+
   // Fallback content if OpenAI API is not configured
   const openai = getOpenAIClient();
   if (!openai) {
     return {
       introduction,
-      services: `We offer comprehensive ${service.service_name.toLowerCase()} solutions for businesses throughout ${city.name}. Our certified technicians specialize in ${service.service_name.toLowerCase()} installations and maintenance.`,
+      services: expertise.overview,
       serviceArea: `We proudly serve ${city.name} and surrounding areas including ${city.neighboringTowns?.slice(0, 3).join(', ') || 'nearby communities'}. Our service area covers zip codes ${city.zipCodes?.slice(0, 3).join(', ') || primaryZipCode} throughout ${city.state}.`,
+      overview: expertise.overview,
+      technicalSpecs: expertise.technicalSpecs,
+      useCases: expertise.useCases,
+      benefits: expertise.benefits,
+      installationProcess: expertise.installationProcess,
+      certifications: expertise.certifications,
+      whyChooseUs: expertise.whyChooseUs,
     };
   }
 
   try {
-    const introductionPrompt = `Write a 150-word introduction for ${service.service_name} services in ${city.name}, ${city.stateAbbr}. Mention specific challenges related to ${service.service_name.toLowerCase()} in buildings near ${city.majorLandmark || 'downtown'}. Tone: Professional, Contractor-focused.`;
+    // Enhanced prompts for better content generation
+    const servicesPrompt = `Write a detailed 200-word description of ${service.service_name} services in ${city.name}, ${city.stateAbbr}. Include technical details, common applications, and benefits. Tone: Professional, Expert-level.`;
 
-    const servicesPrompt = `List the top 5 neighborhoods in ${city.name} where we provide ${service.service_name.toLowerCase()} and confirm we service zip codes starting with ${city.areaCode || 'local'}. Format as a paragraph describing our service coverage.`;
+    const serviceAreaPrompt = `List the top 5 neighborhoods in ${city.name} where we provide ${service.service_name.toLowerCase()} and confirm we service zip codes starting with ${city.areaCode || 'local'}. Format as a paragraph describing our service coverage.`;
 
-    const [introductionResponse, servicesResponse] = await Promise.all([
+    const [servicesResponse, serviceAreaResponse] = await Promise.all([
       openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: introductionPrompt }],
-        max_tokens: 200,
+        model: 'gpt-4',
+        messages: [{ role: 'user', content: servicesPrompt }],
+        max_tokens: 300,
         temperature: 0.7,
       }),
       openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: servicesPrompt }],
+        messages: [{ role: 'user', content: serviceAreaPrompt }],
         max_tokens: 150,
         temperature: 0.7,
       }),
@@ -123,16 +147,30 @@ export async function generateServiceCityContent(city: City, service: Service): 
 
     return {
       introduction, // Always use the template format with city, county, zip code
-      services: `We offer comprehensive ${service.service_name.toLowerCase()} solutions including professional installation and maintenance for businesses in ${city.name}.`,
-      serviceArea: servicesResponse.choices[0]?.message?.content || `We proudly serve ${city.name} and surrounding areas including ${city.neighboringTowns?.slice(0, 3).join(', ') || 'nearby communities'}.`,
+      services: servicesResponse.choices[0]?.message?.content || expertise.overview,
+      serviceArea: serviceAreaResponse.choices[0]?.message?.content || `We proudly serve ${city.name} and surrounding areas including ${city.neighboringTowns?.slice(0, 3).join(', ') || 'nearby communities'}.`,
+      overview: expertise.overview,
+      technicalSpecs: expertise.technicalSpecs,
+      useCases: expertise.useCases,
+      benefits: expertise.benefits,
+      installationProcess: expertise.installationProcess,
+      certifications: expertise.certifications,
+      whyChooseUs: expertise.whyChooseUs,
     };
   } catch (error) {
     console.error('Error generating content:', error);
     // Return fallback content on error (always use template format)
     return {
       introduction, // Always use the template format
-      services: `We offer comprehensive ${service.service_name.toLowerCase()} solutions for businesses in ${city.name}.`,
+      services: expertise.overview,
       serviceArea: `We proudly serve ${city.name} and surrounding areas including ${city.neighboringTowns?.slice(0, 3).join(', ') || 'nearby communities'}.`,
+      overview: expertise.overview,
+      technicalSpecs: expertise.technicalSpecs,
+      useCases: expertise.useCases,
+      benefits: expertise.benefits,
+      installationProcess: expertise.installationProcess,
+      certifications: expertise.certifications,
+      whyChooseUs: expertise.whyChooseUs,
     };
   }
 }

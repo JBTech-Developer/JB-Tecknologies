@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const SALES_EMAIL = 'sales@jbtecknologies.com';
+const FORM_ENDPOINT_BASE = 'https://formsubmit.co/ajax/';
+
 interface LeadData {
   firstName: string;
   lastName: string;
@@ -86,6 +89,54 @@ export async function POST(request: NextRequest) {
       Description: `Lead from ${data.city}, ${data.state}. Facility Type: ${data.facilityType}. Project Details: ${data.projectDetails}`,
     };
 
+    // Prepare email payload for sales@jbtecknologies.com
+    const emailPayload = {
+      _subject: `New Quote Request from ${data.firstName} ${data.lastName} - ${data.city}, ${data.state}`,
+      _template: 'table',
+      _captcha: 'false',
+      'First Name': data.firstName,
+      'Last Name': data.lastName,
+      'Company Name': data.companyName || 'Not provided',
+      'Email': data.email,
+      'Phone': data.phone,
+      'City': data.city,
+      'State': data.state,
+      'Facility Type': data.facilityType,
+      'Project Details': data.projectDetails,
+      'Lead Source': 'Website Quote Form',
+      'Routing': `${routing.tag} - ${routing.priority} Priority`,
+      'Assigned To': routing.owner,
+    };
+
+    // Send email to sales@jbtecknologies.com
+    let emailSent = false;
+    let emailError: string | null = null;
+    
+    try {
+      const emailResponse = await fetch(`${FORM_ENDPOINT_BASE}${encodeURIComponent(SALES_EMAIL)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(emailPayload),
+      });
+
+      if (!emailResponse.ok) {
+        const errorText = await emailResponse.text();
+        console.error('Email submission error:', errorText);
+        emailError = errorText;
+      } else {
+        const emailResult = await emailResponse.json();
+        console.log('Email sent successfully to', SALES_EMAIL, emailResult);
+        emailSent = true;
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      emailError = error instanceof Error ? error.message : 'Unknown error';
+      // Continue even if email fails - we still want to send to Zoho
+    }
+
     // Send to Zoho CRM
     const zohoWebhookUrl = process.env.ZOHO_WEBHOOK_URL;
     
@@ -111,7 +162,12 @@ export async function POST(request: NextRequest) {
       console.log('Zoho webhook URL not configured. Lead data:', zohoPayload);
     }
 
-    return NextResponse.json({ success: true, routing });
+    return NextResponse.json({ 
+      success: true, 
+      routing,
+      emailSent,
+      emailError: emailError || undefined
+    });
   } catch (error) {
     console.error('Error processing lead:', error);
     return NextResponse.json(

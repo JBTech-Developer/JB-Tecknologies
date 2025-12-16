@@ -30,6 +30,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [emailStatus, setEmailStatus] = useState<{ sent: boolean; error?: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +51,12 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
       });
 
       if (response.ok) {
+        const result = await response.json();
         setSubmitStatus('success');
+        setEmailStatus({
+          sent: result.emailSent || false,
+          error: result.emailError
+        });
         setFormData({
           firstName: '',
           lastName: '',
@@ -60,14 +66,15 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
           projectDetails: '',
           facilityType: '',
         });
-        // Close mobile form after 2 seconds
+        // Close mobile form after 3 seconds
         if (onSuccess) {
           setTimeout(() => {
             onSuccess();
-          }, 2000);
+          }, 3000);
         }
       } else {
         setSubmitStatus('error');
+        setEmailStatus(null);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -173,14 +180,52 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
         </div>
 
         {submitStatus === 'success' && (
-          <div className="p-4 bg-luxury-beige/30 border border-luxury-blue/30 rounded-sm text-sm text-luxury-black">
-            Thank you! We'll be in touch shortly.
+          <div className="space-y-3">
+            <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="flex-1">
+                  <p className="font-semibold text-green-800 mb-1">Quote Request Submitted Successfully!</p>
+                  <p className="text-sm text-green-700">Thank you for your interest. We've received your request and will be in touch shortly.</p>
+                </div>
+              </div>
+            </div>
+            {emailStatus && emailStatus.sent && (
+              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <p className="text-xs text-blue-700">Email notification sent to our sales team</p>
+                </div>
+              </div>
+            )}
+            {emailStatus && !emailStatus.sent && emailStatus.error && (
+              <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <p className="text-xs text-yellow-700">Your request was received, but email notification failed. Our team will still process your request.</p>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
         {submitStatus === 'error' && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-sm text-sm text-red-800">
-            There was an error submitting your request. Please try again.
+          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="flex items-start gap-3">
+              <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p className="font-semibold text-red-800 mb-1">Submission Error</p>
+                <p className="text-sm text-red-700">There was an error submitting your request. Please try again or contact us directly.</p>
+              </div>
+            </div>
           </div>
         )}
 

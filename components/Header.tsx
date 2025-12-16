@@ -69,7 +69,7 @@ export default function Header() {
               asChild 
               className="bg-luxury-blue hover:bg-luxury-blue/90 text-white px-8 py-6 rounded-sm font-medium tracking-wide uppercase text-sm transition-all duration-300 hover-lift"
             >
-              <Link href="/georgia/atlanta-network-cabling">Get Quote</Link>
+              <Link href="/planner">Get Quote</Link>
             </Button>
           </div>
           
@@ -79,7 +79,7 @@ export default function Header() {
             size="sm" 
             className="lg:hidden bg-luxury-blue hover:bg-luxury-blue/90 text-white"
           >
-            <Link href="/georgia/atlanta-network-cabling">Get Quote</Link>
+            <Link href="/planner">Get Quote</Link>
           </Button>
         </div>
       </div>

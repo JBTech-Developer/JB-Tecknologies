@@ -341,7 +341,7 @@ export default function ProjectPlanner() {
                   <button
                     onClick={() => goToStep(2)}
                     disabled={!validateStep(1)}
-                    className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 luxury-shadow hover-lift uppercase tracking-wide text-sm"
+                    className="px-8 py-4 bg-luxury-blue text-white rounded-sm font-medium hover:bg-luxury-blue/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 luxury-shadow hover-lift uppercase tracking-wide text-sm"
                   >
                     Continue <FaArrowRight />
                   </button>
@@ -450,14 +450,14 @@ export default function ProjectPlanner() {
                 <div className="flex gap-4">
                   <button
                     onClick={() => goToStep(1)}
-                    className="px-6 py-3 bg-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/80 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
+                    className="px-6 py-3 bg-white border-2 border-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/30 hover:border-luxury-blue transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
                   >
                     <FaArrowLeft /> Back
                   </button>
                   <button
                     onClick={() => goToStep(3)}
                     disabled={!validateStep(2)}
-                    className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
+                    className="px-8 py-4 bg-luxury-blue text-white rounded-sm font-medium hover:bg-luxury-blue/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
                   >
                     Continue <FaArrowRight />
                   </button>
@@ -498,14 +498,14 @@ export default function ProjectPlanner() {
                 <div className="flex gap-4">
                   <button
                     onClick={() => goToStep(2)}
-                    className="px-6 py-3 bg-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/80 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
+                    className="px-6 py-3 bg-white border-2 border-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/30 hover:border-luxury-blue transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
                   >
                     <FaArrowLeft /> Back
                   </button>
                   <button
                     onClick={() => goToStep(4)}
                     disabled={!validateStep(3)}
-                    className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
+                    className="px-8 py-4 bg-luxury-blue text-white rounded-sm font-medium hover:bg-luxury-blue/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
                   >
                     Continue <FaArrowRight />
                   </button>
@@ -644,14 +644,14 @@ export default function ProjectPlanner() {
                     <button
                       type="button"
                       onClick={() => goToStep(3)}
-                      className="px-6 py-3 bg-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/80 transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
+                      className="px-6 py-3 bg-white border-2 border-luxury-beige text-luxury-black rounded-sm font-medium hover:bg-luxury-beige/30 hover:border-luxury-blue transition-all duration-300 flex items-center gap-2 uppercase tracking-wide text-sm"
                     >
                       <FaArrowLeft /> Back
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting || !validateStep(4)}
-                      className="px-8 py-4 bg-luxury-gold text-white rounded-sm font-medium hover:bg-luxury-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
+                      className="px-8 py-4 bg-luxury-blue text-white rounded-sm font-medium hover:bg-luxury-blue/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ml-auto luxury-shadow hover-lift uppercase tracking-wide text-sm"
                     >
                       {isSubmitting ? 'Sending plan...' : 'Submit plan'} <FaPaperPlane />
                     </button>
@@ -746,7 +746,7 @@ export default function ProjectPlanner() {
 
                 <div className="mt-6 p-4 rounded-lg bg-luxury-beige/20 border border-luxury-gold/20 text-sm text-luxury-black">
                   Need help right away? Call <strong className="text-luxury-gold">770-637-2094</strong> or{' '}
-                  <a href="/contact" className="text-luxury-gold hover:underline font-semibold">
+                  <a href="mailto:sales@jbtecknologies.com" className="text-luxury-gold hover:underline font-semibold">
                     contact our team
                   </a>
                   .

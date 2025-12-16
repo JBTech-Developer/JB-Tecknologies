@@ -4,9 +4,9 @@ import { getCityBySlugSync, getNearbyCities, getAllCitiesSync } from '@/lib/citi
 import { getAllServicesSync, getServiceBySlug } from '@/lib/services';
 import { generateServiceCityContent } from '@/lib/content-generator';
 import { generateServiceSchemaMarkup } from '@/lib/schema';
-import { getGoogleMapsStaticUrl } from '@/lib/maps';
 import LeadForm from '@/components/LeadForm';
 import MobileLeadButton from '@/components/MobileLeadButton';
+import InteractiveMap from '@/components/InteractiveMap';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -120,7 +120,6 @@ export default async function ServiceCityPage({
   
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jbtech.com';
   const schema = generateServiceSchemaMarkup(city, service, baseUrl);
-  const mapUrl = getGoogleMapsStaticUrl(city);
   
   console.log('🟢 SERVICE PAGE - About to render with:');
   console.log('  - City:', city.name);
@@ -171,16 +170,135 @@ export default async function ServiceCityPage({
               </p>
             </section>
 
-            {/* Services */}
+            {/* Overview */}
             <section className="fade-in">
               <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
-                Our {service.service_name} Services
+                About {service.service_name}
               </h2>
               <p className="text-lg leading-relaxed text-luxury-black/70 whitespace-pre-line mb-6">
-                {content.services}
+                {content.overview || content.services}
               </p>
-              {service.keywords && service.keywords.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
+            </section>
+
+            {/* Technical Specifications */}
+            {content.technicalSpecs && content.technicalSpecs.length > 0 && (
+              <section className="fade-in">
+                <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                  Technical Specifications
+                </h2>
+                <div className="space-y-3">
+                  {content.technicalSpecs.map((spec, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-luxury-beige/20 rounded-lg border border-luxury-beige/50"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-luxury-blue flex-shrink-0 mt-2"></div>
+                      <p className="text-luxury-black/80 leading-relaxed">{spec}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Use Cases */}
+            {content.useCases && content.useCases.length > 0 && (
+              <section className="fade-in">
+                <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                  Common Applications
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {content.useCases.map((useCase, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-white rounded-lg border border-luxury-beige luxury-shadow-sm"
+                    >
+                      <svg className="w-5 h-5 text-luxury-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-luxury-black/80">{useCase}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Benefits */}
+            {content.benefits && content.benefits.length > 0 && (
+              <section className="fade-in">
+                <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                  Key Benefits
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {content.benefits.map((benefit, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-start gap-3 p-5 bg-gradient-to-br from-luxury-beige/30 to-luxury-beige/10 rounded-lg border border-luxury-beige"
+                    >
+                      <div className="w-6 h-6 rounded-full bg-luxury-gold flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-luxury-black font-medium">{benefit}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Installation Process */}
+            {content.installationProcess && (
+              <section className="fade-in">
+                <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                  Our Installation Process
+                </h2>
+                <div className="bg-luxury-beige/10 rounded-lg p-6 lg:p-8 border border-luxury-beige">
+                  <p className="text-lg leading-relaxed text-luxury-black/80 whitespace-pre-line">
+                    {content.installationProcess}
+                  </p>
+                </div>
+              </section>
+            )}
+
+            {/* Why Choose Us */}
+            {content.whyChooseUs && (
+              <section className="fade-in">
+                <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                  Why Choose JB Technologies
+                </h2>
+                <div className="bg-gradient-to-r from-luxury-blue/5 to-luxury-gold/5 rounded-lg p-6 lg:p-8 border border-luxury-blue/20">
+                  <p className="text-lg leading-relaxed text-luxury-black/80 whitespace-pre-line mb-6">
+                    {content.whyChooseUs}
+                  </p>
+                  {content.certifications && content.certifications.length > 0 && (
+                    <div className="mt-6 pt-6 border-t border-luxury-beige">
+                      <h3 className="font-display text-xl font-semibold mb-4 text-luxury-black">Our Certifications</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {content.certifications.map((cert, index) => (
+                          <div 
+                            key={index}
+                            className="flex items-center gap-2 text-sm text-luxury-black/70"
+                          >
+                            <svg className="w-4 h-4 text-luxury-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                            </svg>
+                            <span>{cert}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            {/* Service Keywords */}
+            {service.keywords && service.keywords.length > 0 && (
+              <section className="fade-in">
+                <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                  Related Services
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {service.keywords.map((keyword, index) => (
                     <div 
                       key={index}
@@ -191,8 +309,8 @@ export default async function ServiceCityPage({
                     </div>
                   ))}
                 </div>
-              )}
-            </section>
+              </section>
+            )}
 
             {/* Service Area */}
             <section className="fade-in">
@@ -209,19 +327,11 @@ export default async function ServiceCityPage({
               <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
                 Our Location
               </h2>
-              <div className="w-full h-96 lg:h-[500px] rounded-lg overflow-hidden luxury-shadow-lg">
-                {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? (
-                  <img 
-                    src={mapUrl} 
-                    alt={`Map showing ${city.name}, ${city.stateAbbr}`}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-luxury-beige/20 text-luxury-black/60">
-                    Google Maps API key required
-                  </div>
-                )}
-              </div>
+              <InteractiveMap 
+                city={city} 
+                height="500px"
+                className="h-96 lg:h-[500px]"
+              />
             </section>
           </div>
 
