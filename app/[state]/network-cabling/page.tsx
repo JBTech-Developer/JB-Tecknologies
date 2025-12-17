@@ -131,6 +131,7 @@ export default async function StatePage({
             className="object-cover opacity-50"
             priority
             sizes="100vw"
+            unoptimized
           />
         </div>
         <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center text-white">
