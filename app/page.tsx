@@ -31,7 +31,7 @@ export default function Home() {
               Expert low-voltage installation and structured cabling solutions for businesses across America
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-luxury-blue hover:bg-luxury-blue/90 text-white">
+              <Button asChild size="lg" className="bg-gradient-blue hover:opacity-90 text-white">
                 <Link href="/georgia/network-cabling">Explore Services</Link>
               </Button>
               <Button asChild size="lg" className="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 hover:border-white/50">
@@ -69,7 +69,7 @@ export default function Home() {
             </div>
             <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden luxury-shadow-lg bg-luxury-beige">
               <Image 
-                src="/assets/serverr.jpg" 
+                src="/assets/18.png" 
                 alt="Professional network cabling installation and structured cabling systems"
                 fill
                 className="object-cover"
@@ -94,24 +94,35 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Cat6 Data Cabling", desc: "High-performance structured cabling for modern networks" },
-              { title: "Fiber Optic Installation", desc: "Lightning-fast connectivity for enterprise applications" },
-              { title: "Structured Cabling Systems", desc: "Comprehensive infrastructure design and implementation" },
-              { title: "Network Infrastructure", desc: "End-to-end network solutions for seamless operations" },
-              { title: "Low-Voltage Installation", desc: "Professional installation of all low-voltage systems" },
-              { title: "Network Design & Consulting", desc: "Expert guidance for optimal network architecture" },
+              { title: "Cat6 Data Cabling", desc: "High-performance structured cabling for modern networks", image: "/assets/12.png" },
+              { title: "Fiber Optic Installation", desc: "Lightning-fast connectivity for enterprise applications", image: "/assets/13.png" },
+              { title: "Structured Cabling Systems", desc: "Comprehensive infrastructure design and implementation", image: "/assets/14.png" },
+              { title: "Network Infrastructure", desc: "End-to-end network solutions for seamless operations", image: "/assets/15.png" },
+              { title: "Low-Voltage Installation", desc: "Professional installation of all low-voltage systems", image: "/assets/16.png" },
+              { title: "Network Design & Consulting", desc: "Expert guidance for optimal network architecture", image: "/assets/17.png" },
             ].map((service, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-lg p-8 luxury-shadow hover-lift transition-all duration-300 fade-in"
+                className="bg-white rounded-lg overflow-hidden luxury-shadow hover-lift transition-all duration-300 fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <h3 className="text-xl font-display font-semibold mb-3 text-luxury-black">
-                  {service.title}
-                </h3>
-                <p className="text-luxury-black/70 leading-relaxed">
-                  {service.desc}
-                </p>
+                <div className="relative h-48 w-full">
+                  <Image 
+                    src={service.image} 
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-8">
+                  <h3 className="text-xl font-display font-semibold mb-3 text-luxury-black">
+                    {service.title}
+                  </h3>
+                  <p className="text-luxury-black/70 leading-relaxed">
+                    {service.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -175,7 +186,7 @@ export default function Home() {
       <section className="relative h-96 lg:h-[500px] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-luxury-black via-luxury-black/95 to-luxury-black/90">
           <Image 
-            src="/assets/serverr.jpg" 
+            src="/assets/19.png" 
             alt="Network infrastructure and structured cabling systems"
             fill
             className="object-cover opacity-50"
@@ -190,7 +201,7 @@ export default function Home() {
             <p className="text-xl mb-8 text-white/90">
               Contact us today to discuss your project
             </p>
-            <Button asChild size="lg" className="bg-luxury-blue hover:bg-luxury-blue/90 text-white">
+            <Button asChild size="lg" className="bg-gradient-blue hover:opacity-90 text-white">
               <Link href="/planner">Start Your Project</Link>
             </Button>
           </div>

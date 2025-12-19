@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-luxury-blue text-white hover:bg-luxury-blue/90 luxury-shadow hover-lift",
+        default: "bg-gradient-blue text-white hover:opacity-90 luxury-shadow hover-lift",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 luxury-shadow",
         outline:
-          "border border-luxury-beige bg-white text-luxury-black hover:bg-luxury-beige/30 hover:border-luxury-blue hover:text-luxury-blue",
+          "border border-luxury-silver bg-white text-luxury-black hover:bg-luxury-silver/30 hover:border-luxury-blue hover:text-luxury-blue",
         secondary:
-          "bg-luxury-beige text-luxury-black hover:bg-luxury-beige/80 luxury-shadow",
-        ghost: "hover:bg-luxury-beige/30 hover:text-luxury-blue text-luxury-black",
+          "bg-gradient-silver text-luxury-black hover:opacity-90 luxury-shadow",
+        ghost: "hover:bg-luxury-silver/30 hover:text-luxury-blue text-luxury-black",
         link: "text-luxury-blue underline-offset-4 hover:underline",
       },
       size: {

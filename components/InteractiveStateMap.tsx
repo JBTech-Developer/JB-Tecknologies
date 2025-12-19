@@ -64,9 +64,25 @@ export default function InteractiveStateMap({
   // Monitor for script loading errors
   useEffect(() => {
     const handleError = (event: ErrorEvent) => {
-      if (event.message?.includes('maps.googleapis.com') || event.message?.includes('Google Maps')) {
+      const message = event.message?.toLowerCase() || '';
+      if (message.includes('maps.googleapis.com') || message.includes('google maps') || message.includes('invalidkey')) {
         console.error('Google Maps script error:', event.message);
-        setLoadError('Failed to load Google Maps. Check API key restrictions and ensure Maps JavaScript API is enabled.');
+        
+        if (message.includes('invalidkey') || message.includes('invalid key')) {
+          setLoadError('Invalid API key. Please verify your Google Maps API key is correct and has Maps JavaScript API enabled.');
+        } else {
+          setLoadError('Failed to load Google Maps. Check API key restrictions and ensure Maps JavaScript API is enabled.');
+        }
+      }
+    };
+
+    // Listen for Google Maps specific errors
+    const handleGoogleMapsError = () => {
+      const googleMapsScript = document.querySelector('script[src*="maps.googleapis.com"]');
+      if (googleMapsScript) {
+        googleMapsScript.addEventListener('error', () => {
+          setLoadError('Failed to load Google Maps script. Check your API key and network connection.');
+        });
       }
     };
 
@@ -74,12 +90,19 @@ export default function InteractiveStateMap({
       // Check if Google Maps loaded successfully after a delay
       setTimeout(() => {
         if (!(window as any).google?.maps && !scriptLoaded) {
-          setLoadError('Google Maps failed to load. Please check your API key configuration.');
+          // Check for specific error messages in console
+          const consoleErrors = (window as any).__googleMapsErrors || [];
+          if (consoleErrors.some((err: string) => err.toLowerCase().includes('invalidkey'))) {
+            setLoadError('Invalid API key. Verify your key in Google Cloud Console and ensure Maps JavaScript API is enabled.');
+          } else {
+            setLoadError('Google Maps failed to load. Please check your API key configuration.');
+          }
         }
       }, 5000);
     };
 
     window.addEventListener('error', handleError);
+    handleGoogleMapsError();
     checkGoogleMaps();
 
     return () => {

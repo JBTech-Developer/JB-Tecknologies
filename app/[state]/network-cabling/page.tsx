@@ -125,13 +125,12 @@ export default async function StatePage({
       <section className="relative h-[50vh] lg:h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-luxury-black via-luxury-black/95 to-luxury-black/90">
         <div className="absolute inset-0 bg-luxury-black">
           <Image 
-            src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1920&q=80" 
+            src="/assets/20.png" 
             alt="Network cabling infrastructure"
             fill
             className="object-cover opacity-50"
             priority
             sizes="100vw"
-            unoptimized
           />
         </div>
         <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center text-white">
@@ -175,12 +174,13 @@ export default async function StatePage({
                 <p className="text-yellow-800">⚠️ No services found. Check console for details.</p>
               </div>
             ) : (
-              services.map((service, index) => (
-                <div 
-                  key={service.slug} 
-                  className="border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow hover-lift transition-all duration-300"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
+              services.map((service, index) => {
+                return (
+                  <div 
+                    key={service.slug} 
+                    className="border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow hover-lift transition-all duration-300"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
                   <h3 className="font-display text-xl font-semibold mb-3 text-luxury-black">
                     {service.service_name}
                   </h3>
@@ -198,7 +198,9 @@ export default async function StatePage({
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </Link>
                 </div>
-              ))
+                  </div>
+                );
+              })
             )}
           </div>
         </section>
@@ -238,6 +240,7 @@ export default async function StatePage({
                     <div className="mt-4 flex items-center gap-2 text-luxury-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                       Explore Services
                       <span>→</span>
+                      </div>
                     </div>
                   </Link>
                 );

@@ -53,7 +53,15 @@ const config = {
           foreground: "rgb(var(--card-foreground))",
         },
         luxury: {
-          blue: "#245B8A",
+          blue: {
+            DEFAULT: "#1676B7",
+            light: "#5CC3EE",
+            dark: "#1676B7",
+          },
+          silver: {
+            DEFAULT: "#CCCCCC",
+            light: "#FFFFFF",
+          },
           black: "#0D0D0D",
           beige: "#E6DCC5",
           offwhite: "#F8F8F8",

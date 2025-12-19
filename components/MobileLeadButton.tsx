@@ -19,7 +19,7 @@ export default function MobileLeadButton({ city, state }: MobileLeadButtonProps)
       <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t border-luxury-beige p-4 luxury-shadow-lg">
         <Button
           onClick={() => setIsOpen(true)}
-          className="w-full bg-luxury-blue hover:bg-luxury-blue/90 text-white"
+          className="w-full bg-gradient-blue hover:opacity-90 text-white"
           size="lg"
         >
           Get a Quote

@@ -229,7 +229,7 @@ export default function LeadForm({ city, state, onSuccess }: LeadFormProps) {
           </div>
         )}
 
-        <Button type="submit" className="w-full bg-luxury-blue hover:bg-luxury-blue/90 text-white" disabled={isSubmitting}>
+        <Button type="submit" className="w-full bg-gradient-blue hover:opacity-90 text-white" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Get a Quote'}
         </Button>
       </form>

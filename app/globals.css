@@ -13,19 +13,19 @@
     --card-foreground: 13 13 13;
     --popover: 255 255 255;
     --popover-foreground: 13 13 13;
-    --primary: 36 91 138; /* Blue #245B8A */
+    --primary: 22 118 183; /* Blue #1676B7 */
     --primary-foreground: 255 255 255;
-    --secondary: 230 220 197; /* Beige #E6DCC5 */
+    --secondary: 204 204 204; /* Silver #CCCCCC */
     --secondary-foreground: 13 13 13;
-    --muted: 230 220 197;
+    --muted: 204 204 204;
     --muted-foreground: 102 102 102;
-    --accent: 36 91 138;
+    --accent: 22 118 183; /* Blue #1676B7 */
     --accent-foreground: 255 255 255;
     --destructive: 220 38 38;
     --destructive-foreground: 255 255 255;
-    --border: 230 220 197;
-    --input: 230 220 197;
-    --ring: 36 91 138;
+    --border: 204 204 204; /* Silver #CCCCCC */
+    --input: 204 204 204; /* Silver #CCCCCC */
+    --ring: 22 118 183; /* Blue #1676B7 */
     --radius: 0.5rem;
   }
 }
@@ -58,6 +58,21 @@
   
   .luxury-border {
     border-color: rgba(230, 220, 197, 0.5);
+  }
+  
+  .bg-gradient-blue {
+    background: linear-gradient(135deg, #1676B7 0%, #5CC3EE 100%);
+  }
+  
+  .bg-gradient-silver {
+    background: linear-gradient(135deg, #CCCCCC 0%, #FFFFFF 100%);
+  }
+  
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #1676B7 0%, #5CC3EE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .fade-in {

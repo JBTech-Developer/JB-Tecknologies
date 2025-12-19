@@ -138,13 +138,12 @@ export default async function ServiceCityPage({
       <section className="relative h-[60vh] lg:h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-luxury-black via-luxury-black/95 to-luxury-black/90">
         <div className="absolute inset-0 bg-luxury-black">
           <Image
-            src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1920&q=80"
+            src="/assets/21.png"
             alt={`${service.service_name} services in ${city.name}, ${city.stateAbbr} - Professional network cabling and infrastructure solutions`}
             fill
             className="object-cover opacity-50"
             priority
             sizes="100vw"
-            unoptimized
           />
         </div>
         <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center text-white">

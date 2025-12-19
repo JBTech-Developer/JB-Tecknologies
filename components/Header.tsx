@@ -38,18 +38,42 @@ export default function Header() {
               </button>
               
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg luxury-shadow-lg border border-luxury-beige/30 py-4 fade-in">
+                <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg luxury-shadow-lg border border-luxury-beige/30 py-4 fade-in">
                   <Link
                     href="/georgia/network-cabling"
                     className="block px-6 py-3 text-sm text-luxury-black hover:bg-luxury-beige/30 hover:text-luxury-blue transition-colors duration-200"
                   >
-                    Network Cabling
+                    Network Cabling Services
                   </Link>
                   <Link
-                    href="/planner"
+                    href="/georgia/atlanta/voice-data-cabling-installers"
                     className="block px-6 py-3 text-sm text-luxury-black hover:bg-luxury-beige/30 hover:text-luxury-blue transition-colors duration-200"
                   >
-                    Project Planner
+                    Voice & Data Cabling
+                  </Link>
+                  <Link
+                    href="/georgia/atlanta/fiber-optic-cabling-installation"
+                    className="block px-6 py-3 text-sm text-luxury-black hover:bg-luxury-beige/30 hover:text-luxury-blue transition-colors duration-200"
+                  >
+                    Fiber Optic Installation
+                  </Link>
+                  <Link
+                    href="/georgia/atlanta/commercial-cctv-installation"
+                    className="block px-6 py-3 text-sm text-luxury-black hover:bg-luxury-beige/30 hover:text-luxury-blue transition-colors duration-200"
+                  >
+                    Security Camera Systems
+                  </Link>
+                  <Link
+                    href="/georgia/atlanta/commercial-wifi-installation"
+                    className="block px-6 py-3 text-sm text-luxury-black hover:bg-luxury-beige/30 hover:text-luxury-blue transition-colors duration-200"
+                  >
+                    Commercial WiFi
+                  </Link>
+                  <Link
+                    href="/georgia/atlanta/sound-masking-installation"
+                    className="block px-6 py-3 text-sm text-luxury-black hover:bg-luxury-beige/30 hover:text-luxury-blue transition-colors duration-200"
+                  >
+                    Sound Masking Solutions
                   </Link>
                 </div>
               )}
@@ -67,7 +91,7 @@ export default function Header() {
           <div className="hidden lg:block">
             <Button 
               asChild 
-              className="bg-luxury-blue hover:bg-luxury-blue/90 text-white px-8 py-6 rounded-sm font-medium tracking-wide uppercase text-sm transition-all duration-300 hover-lift"
+              className="bg-gradient-blue hover:opacity-90 text-white px-8 py-6 rounded-sm font-medium tracking-wide uppercase text-sm transition-all duration-300 hover-lift"
             >
               <Link href="/planner">Get Quote</Link>
             </Button>
@@ -77,7 +101,7 @@ export default function Header() {
           <Button 
             asChild 
             size="sm" 
-            className="lg:hidden bg-luxury-blue hover:bg-luxury-blue/90 text-white"
+            className="lg:hidden bg-gradient-blue hover:opacity-90 text-white"
           >
             <Link href="/planner">Get Quote</Link>
           </Button>
