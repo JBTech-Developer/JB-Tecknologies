@@ -32,9 +32,17 @@ function parseCSV(csvContent: string): City[] {
       const value = values[index];
       
       // Map CSV headers to City interface
+      // Supports SimpleMaps US Cities (city, state_name, state_id, lat, lng, population, zips)
       if (header === 'name' || header === 'city') city.name = value;
-      else if (header === 'state') city.state = value;
-      else if (header === 'stateabbr' || header === 'state_abbr' || header === 'state abbreviation') city.stateAbbr = value;
+      else if (header === 'state' || header === 'state_name') city.state = value;
+      else if (
+        header === 'stateabbr' ||
+        header === 'state_abbr' ||
+        header === 'state abbreviation' ||
+        header === 'state_id'
+      ) {
+        city.stateAbbr = value;
+      }
       else if (header === 'latitude' || header === 'lat') city.latitude = parseFloat(value);
       else if (header === 'longitude' || header === 'lng' || header === 'lon' || header === 'long') city.longitude = parseFloat(value);
       else if (header === 'population' || header === 'pop') city.population = parseInt(value, 10);
@@ -92,12 +100,12 @@ async function importCities(options: ImportOptions) {
   
   console.log(`Parsed ${cities.length} cities`);
   
-  // Validate cities
+  // Validate cities and enforce population filter (> 3000)
   const validCities = cities.filter(city => {
     if (!city.name || !city.state || !city.stateAbbr) return false;
     if (typeof city.latitude !== 'number' || city.latitude < -90 || city.latitude > 90) return false;
     if (typeof city.longitude !== 'number' || city.longitude < -180 || city.longitude > 180) return false;
-    if (typeof city.population !== 'number' || city.population < 0) return false;
+    if (typeof city.population !== 'number' || city.population <= 3000) return false;
     return true;
   });
   

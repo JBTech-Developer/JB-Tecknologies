@@ -30,7 +30,7 @@ export default function InteractiveStateMap({
   centerCity,
   height = '500px',
   className = '',
-  maxMarkers = 20
+  maxMarkers
 }: InteractiveStateMapProps) {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [scriptLoaded, setScriptLoaded] = useState(false);
@@ -52,7 +52,11 @@ export default function InteractiveStateMap({
   }, [cities, centerCity]);
 
   const markers = useMemo(() => {
-    return cities.slice(0, maxMarkers).map(city => ({
+    // Show all cities by default, only limit if maxMarkers is explicitly set and less than total cities
+    const citiesToShow = (maxMarkers !== undefined && maxMarkers < cities.length) 
+      ? cities.slice(0, maxMarkers) 
+      : cities;
+    return citiesToShow.map(city => ({
       position: { lat: city.latitude, lng: city.longitude },
       label: city.name.charAt(0),
       title: `${city.name}, ${city.stateAbbr}`,

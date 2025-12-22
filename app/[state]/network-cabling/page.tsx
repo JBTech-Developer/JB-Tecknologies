@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getStateBySlug, getCitiesByState, getAllStates, getAllCitiesSync } from '@/lib/cities';
 import { getAllServicesSync } from '@/lib/services';
 import InteractiveStateMap from '@/components/InteractiveStateMap';
+import InteractiveStateMapWithSelector from '@/components/InteractiveStateMapWithSelector';
 
 // Log when module loads
 console.log('🔵 STATE PAGE MODULE - File loaded! Route: [state]/network-cabling');
@@ -149,12 +150,12 @@ export default async function StatePage({
           <h2 className="text-3xl lg:text-4xl font-display font-bold mb-8 text-luxury-black text-center">
             Service Areas in {stateData.name}
           </h2>
-          <InteractiveStateMap 
+          <InteractiveStateMapWithSelector 
             cities={cities}
             centerCity={cities[0]}
             height="500px"
             className="h-96 lg:h-[500px]"
-            maxMarkers={20}
+            showSelector={true}
           />
         </section>
 
@@ -174,13 +175,12 @@ export default async function StatePage({
                 <p className="text-yellow-800">⚠️ No services found. Check console for details.</p>
               </div>
             ) : (
-              services.map((service, index) => {
-                return (
-                  <div 
-                    key={service.slug} 
-                    className="border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow hover-lift transition-all duration-300"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
+              services.map((service, index) => (
+                <div
+                  key={service.slug}
+                  className="border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow hover-lift transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
                   <h3 className="font-display text-xl font-semibold mb-3 text-luxury-black">
                     {service.service_name}
                   </h3>
@@ -198,9 +198,7 @@ export default async function StatePage({
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </Link>
                 </div>
-                  </div>
-                );
-              })
+              ))
             )}
           </div>
         </section>
@@ -240,7 +238,6 @@ export default async function StatePage({
                     <div className="mt-4 flex items-center gap-2 text-luxury-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                       Explore Services
                       <span>→</span>
-                      </div>
                     </div>
                   </Link>
                 );

@@ -5,21 +5,25 @@
  */
 
 import { City } from './types';
-import fs from 'fs';
-import path from 'path';
 
-export function loadCitiesFromJSON(filePath: string): City[] {
+export async function loadCitiesFromJSON(filePath: string): Promise<City[]> {
+  // Ensure this only runs on the server; on the client, return empty to fall back
+  if (typeof window !== 'undefined') {
+    return [];
+  }
   try {
-    const fullPath = path.join(process.cwd(), filePath);
-    const fileContents = fs.readFileSync(fullPath, 'utf-8');
+    const { readFileSync } = await import('fs');
+    const { join } = await import('path');
+    const fullPath = join(process.cwd(), filePath);
+    const fileContents = readFileSync(fullPath, 'utf-8');
     const cities: City[] = JSON.parse(fileContents);
-    
+
     // Validate city structure (including required county and zipCodes)
-    return cities.filter(city => 
-      city.name && 
-      city.state && 
-      city.stateAbbr && 
-      typeof city.latitude === 'number' && 
+    return cities.filter(city =>
+      city.name &&
+      city.state &&
+      city.stateAbbr &&
+      typeof city.latitude === 'number' &&
       typeof city.longitude === 'number' &&
       typeof city.population === 'number' &&
       city.county && // County is required

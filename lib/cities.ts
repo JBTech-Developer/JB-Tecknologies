@@ -1,7 +1,4 @@
 import { City, StateData } from './types';
-import { loadCitiesFromJSON } from './load-cities';
-import fs from 'fs';
-import path from 'path';
 
 // Lazy import Sanity functions to prevent build errors
 let sanityModule: any = null;
@@ -77,20 +74,7 @@ async function loadCities(): Promise<City[]> {
     }
   }
 
-  // Try loading from JSON file
-  try {
-    const jsonPath = path.join(process.cwd(), 'data', 'cities.json');
-    if (fs.existsSync(jsonPath)) {
-      const jsonCities = loadCitiesFromJSON('data/cities.json');
-      if (jsonCities && jsonCities.length > 0) {
-        cachedCities = jsonCities;
-        return cachedCities;
-      }
-    }
-  } catch (error) {
-    console.warn('Failed to load cities from JSON, using fallback:', error);
-  }
-
+  
   // Use fallback sample data
   cachedCities = fallbackCities;
   return cachedCities;

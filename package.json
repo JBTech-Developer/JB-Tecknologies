@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "simplemaps-import": "tsx scripts/simplemaps-import.ts",
     "generate": "tsx scripts/generate-pages.ts",
     "import-cities": "tsx scripts/import-cities.ts",
     "generate-city-data": "tsx scripts/generate-city-data.ts",
