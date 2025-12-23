@@ -203,10 +203,13 @@ export default function InteractiveStateMapWithSelector({
     };
   }, []);
 
-  const onLoad = (map: google.maps.Map) => {
-    mapRef.current = map;
+  const handleScriptLoad = () => {
     setScriptLoaded(true);
     setLoadError(null);
+  };
+
+  const handleMapLoad = (map: google.maps.Map) => {
+    mapRef.current = map;
   };
 
   if (!apiKey) {
@@ -318,14 +321,14 @@ export default function InteractiveStateMapWithSelector({
         <LoadScript 
           googleMapsApiKey={apiKey}
           loadingElement={<div className="w-full h-full flex items-center justify-center bg-luxury-beige/20">Loading map...</div>}
-          onLoad={onLoad}
+          onLoad={handleScriptLoad}
         >
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={defaultCenter}
             zoom={mapZoom}
             options={defaultOptions}
-            onLoad={onLoad}
+            onLoad={handleMapLoad}
           >
             {/* User Location Marker */}
             {userLocation && (
