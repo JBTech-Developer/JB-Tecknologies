@@ -1,7 +1,8 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import servicesData from "@/data/services.json";
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -145,46 +146,34 @@ export default function Footer() {
               Services
             </h3>
             <ul className="space-y-3">
-              <li>
-                <Link href="/georgia/network-cabling" className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
-                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span>Cabling & Networking</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/georgia/network-cabling" className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
-                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span>Wireless & DAS Solutions</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/georgia/network-cabling" className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
-                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span>Small Cell & Tower</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/georgia/network-cabling" className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
-                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span>Hangar Services</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/georgia/network-cabling" className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
-                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span>Nationwide Rollouts</span>
-                </Link>
-              </li>
+              {(() => {
+                const services = servicesData as any[];
+                const pickByIncludes = (needle: string) =>
+                  services.find(s =>
+                    s.category?.toLowerCase().includes(needle) ||
+                    s.service_name.toLowerCase().includes(needle)
+                  );
+                const cabling = pickByIncludes('cabling') || services[0];
+                const wireless = pickByIncludes('wireless') || pickByIncludes('cellular') || services.find(s => s.category?.toLowerCase() === 'wireless');
+                const smallCell = pickByIncludes('cellular') || pickByIncludes('das') || services.find(s => s.slug.includes('cell'));
+                const rollouts = pickByIncludes('rollout') || pickByIncludes('retail') || services.find(s => s.slug.includes('rollout'));
+                const footerServices = [
+                  { label: 'Cabling & Networking', slug: cabling?.slug },
+                  { label: 'Wireless & DAS Solutions', slug: wireless?.slug },
+                  { label: 'Small Cell & Tower', slug: smallCell?.slug },
+                  { label: 'Nationwide Rollouts', slug: rollouts?.slug },
+                ].filter((i): i is { label: string; slug: string } => !!i && !!i.slug);
+                return footerServices.map(item => (
+                  <li key={item.slug}>
+                    <Link href={`/georgia/atlanta/${item.slug}`} className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
+                      <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                      <span>{item.label}</span>
+                    </Link>
+                  </li>
+                ));
+              })()}
             </ul>
           </div>
           

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
@@ -13,8 +14,9 @@ export default function Header() {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link href="/" className="text-2xl lg:text-3xl font-display font-bold text-luxury-black hover:text-luxury-blue transition-colors duration-300">
-            JB Technologies
+          <Link href="/" className="inline-flex items-center gap-3 text-2xl lg:text-3xl font-display font-bold text-luxury-black hover:text-luxury-blue transition-colors duration-300">
+            <Image src="/assets/favicon.png" alt="JB Technologies logo" width={36} height={36} className="h-9 w-9" priority />
+            <span>Technologies</span>
           </Link>
           
           {/* Desktop Navigation */}
