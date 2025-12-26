@@ -5,8 +5,8 @@ import { getAllServicesSync, getServiceBySlug } from '@/lib/services';
 import { generateServiceCityContent } from '@/lib/content-generator';
 import { generateServiceSchemaMarkup } from '@/lib/schema';
 import LeadForm from '@/components/LeadForm';
-import MobileLeadButton from '@/components/MobileLeadButton';
 import InteractiveMap from '@/components/InteractiveMap';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -132,6 +132,17 @@ export default async function ServiceCityPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: `/${resolvedParams.state}/network-cabling` },
+          { label: city.state, href: `/${resolvedParams.state}/network-cabling` },
+          { label: city.name, href: `/${resolvedParams.state}/${resolvedParams.city}/voice-data-cabling-installers` },
+          { label: service.service_name }
+        ]}
       />
       
       {/* Hero Section */}
@@ -333,17 +344,44 @@ export default async function ServiceCityPage({
                 className="h-96 lg:h-[500px]"
               />
             </section>
+
+            {/* Nearby Cities Section - Bottom of Page */}
+            <section className="fade-in mt-16 pt-16 border-t border-luxury-beige">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold mb-6 text-luxury-black">
+                Serving Neighbors in {city.name}
+              </h2>
+              <p className="text-lg text-luxury-black/70 mb-8">
+                We provide {service.service_name.toLowerCase()} to businesses in nearby cities throughout {city.stateAbbr}.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {nearbyCities.slice(0, 10).map((nearbyCity) => {
+                  const citySlug = nearbyCity.name.toLowerCase().replace(/\s+/g, '-');
+                  const stateSlug = nearbyCity.state.toLowerCase().replace(/\s+/g, '-');
+                  return (
+                    <Link
+                      key={nearbyCity.name}
+                      href={`/${stateSlug}/${citySlug}/${resolvedParams.service}`}
+                      className="border border-luxury-beige rounded-lg p-4 bg-white luxury-shadow hover-lift transition-all duration-300 group text-center"
+                    >
+                      <div className="text-sm font-medium text-luxury-black group-hover:text-luxury-blue transition-colors">
+                        {nearbyCity.name}
+                      </div>
+                      <div className="text-xs text-luxury-black/60 mt-1">
+                        {nearbyCity.stateAbbr}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Form - Not sticky to prevent covering other widgets */}
-            <div className="hidden lg:block fade-in">
+            <div id="contact-form" className="hidden lg:block fade-in">
               <LeadForm city={city.name} state={city.stateAbbr} />
             </div>
-            
-            {/* Mobile Lead Button */}
-            <MobileLeadButton city={city.name} state={city.stateAbbr} />
 
             {/* Nearby Cities Widget */}
             <div className="mt-8 lg:mt-12 border border-luxury-beige rounded-lg p-6 lg:p-8 bg-white luxury-shadow fade-in">

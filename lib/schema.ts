@@ -69,42 +69,16 @@ export function generateServiceSchemaMarkup(city: City, service: Service, baseUr
     image: imageUrl,
     '@id': url,
     url: url,
-    telephone: '+1-800-555-0199',
+    telephone: '+1-770-637-2094',
     priceRange: '$$',
     description: service.meta_desc_template.replace(/{City}/g, city.name),
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: city.name,
-      addressRegion: city.stateAbbr,
-      addressCountry: 'US',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: city.latitude,
-      longitude: city.longitude,
-    },
     areaServed: {
       '@type': 'City',
       name: city.name,
-    },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: service.service_name,
-      itemListElement: service.keywords?.map((keyword, index) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: `${keyword} in ${city.name}`,
-        },
-      })) || [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: `${service.service_name} in ${city.name}`,
-          },
-        },
-      ],
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: city.stateAbbr,
+      },
     },
   };
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import LeadForm from "@/components/LeadForm";
+import USMap from "@/components/USMap";
 
 export default function Home() {
   return (
@@ -32,7 +33,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="bg-gradient-blue hover:opacity-90 text-white">
-                <Link href="/georgia/network-cabling">Explore Services</Link>
+                <Link href="#state-selector">Select Your State</Link>
               </Button>
               <Button asChild size="lg" className="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 hover:border-white/50">
                 <Link href="/planner">Check Availability</Link>
@@ -48,6 +49,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* US Map / State Selector Section - Immediately Visible */}
+      <div id="state-selector">
+        <USMap />
+      </div>
 
       {/* Experience Section */}
       <section className="py-24 lg:py-32 bg-white">

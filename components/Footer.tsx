@@ -148,24 +148,38 @@ export default function Footer() {
             <ul className="space-y-3">
               {(() => {
                 const services = servicesData as any[];
-                const pickByIncludes = (needle: string) =>
-                  services.find(s =>
-                    s.category?.toLowerCase().includes(needle) ||
-                    s.service_name.toLowerCase().includes(needle)
-                  );
-                const cabling = pickByIncludes('cabling') || services[0];
-                const wireless = pickByIncludes('wireless') || pickByIncludes('cellular') || services.find(s => s.category?.toLowerCase() === 'wireless');
-                const smallCell = pickByIncludes('cellular') || pickByIncludes('das') || services.find(s => s.slug.includes('cell'));
-                const rollouts = pickByIncludes('rollout') || pickByIncludes('retail') || services.find(s => s.slug.includes('rollout'));
+                // More specific matching to ensure unique services
+                const cabling = services.find(s => 
+                  s.category?.toLowerCase() === 'structured cabling' && 
+                  s.slug?.includes('voice-data-cabling')
+                ) || services.find(s => s.category?.toLowerCase().includes('cabling')) || services[0];
+                
+                const wireless = services.find(s => 
+                  s.category?.toLowerCase() === 'wireless' && 
+                  s.slug?.includes('wifi')
+                ) || services.find(s => s.category?.toLowerCase() === 'wireless');
+                
+                const smallCell = services.find(s => 
+                  s.slug?.includes('cellular-das') || s.slug?.includes('das-installation')
+                ) || services.find(s => s.category?.toLowerCase() === 'wireless' && s.slug?.includes('cellular'));
+                
+                const rollouts = services.find(s => 
+                  s.slug?.includes('retail-pos-rollouts') || s.slug?.includes('rollout')
+                ) || services.find(s => s.service_name?.toLowerCase().includes('rollout'));
+                
                 const footerServices = [
-                  { label: 'Cabling & Networking', slug: cabling?.slug },
-                  { label: 'Wireless & DAS Solutions', slug: wireless?.slug },
-                  { label: 'Small Cell & Tower', slug: smallCell?.slug },
-                  { label: 'Nationwide Rollouts', slug: rollouts?.slug },
-                ].filter((i): i is { label: string; slug: string } => !!i && !!i.slug);
+                  { label: 'Cabling & Networking', slug: cabling?.slug, service: cabling },
+                  { label: 'Wireless & DAS Solutions', slug: wireless?.slug, service: wireless },
+                  { label: 'Small Cell & Tower', slug: smallCell?.slug, service: smallCell },
+                  { label: 'Nationwide Rollouts', slug: rollouts?.slug, service: rollouts },
+                ].filter((i): i is { label: string; slug: string; service: any } => !!i && !!i.slug && !!i.service);
+                
+                // Build unique links per service using default state/city so each points to its own page
+                const defaultState = 'georgia';
+                const defaultCity = 'atlanta';
                 return footerServices.map(item => (
                   <li key={item.slug}>
-                    <Link href={`/georgia/atlanta/${item.slug}`} className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
+                    <Link href={`/${defaultState}/${defaultCity}/${item.slug}`} className="text-sm text-luxury-black/70 hover:text-luxury-blue transition-colors duration-300 flex items-center gap-2 group">
                       <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
